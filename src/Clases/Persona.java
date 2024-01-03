@@ -1,5 +1,5 @@
 
-package proyecto_final;
+package Clases;
 
 public class Persona {
     private String cedula, nombre, apellido, telefono, correo, direccion, celular;

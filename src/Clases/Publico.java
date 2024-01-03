@@ -1,5 +1,8 @@
 
-package proyecto_final;
+package Clases;
+
+import Clases.Persona;
+
 public class Publico extends Persona{
     private String codigo_publico;//llave primaria
     private String Tipo_Entrada, Estado_reguistro, Preferencias_p;

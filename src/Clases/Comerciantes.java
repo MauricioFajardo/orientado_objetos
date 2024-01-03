@@ -1,5 +1,6 @@
 
-package proyecto_final;
+package Clases;
+
 public class Comerciantes extends Persona{
     private String codigo_participante;//llave primaria
     private String cedula, Tipo_Comercio, Productos_c, Servicio_c, Contacto_c;

@@ -1,5 +1,6 @@
 
-package proyecto_final;
+package Clases;
+
 public class Patrocinador extends Persona{
     private String codigo_patri;//llave primaria
     private String Descripcion_p, Contacto_p, Redes_Sociales;

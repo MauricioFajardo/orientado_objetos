@@ -1,5 +1,6 @@
 
-package proyecto_final;
+package Clases;
+
 public class Administrador extends Persona{
     private String codigo_dmin;
     private String usuario, contraseña;

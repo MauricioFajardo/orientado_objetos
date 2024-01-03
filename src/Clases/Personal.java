@@ -1,5 +1,8 @@
 
-package proyecto_final;
+package Clases;
+
+import Clases.Persona;
+
 public class Personal extends Persona{
     private String codigo_perso;//llave primraria
     private String Tipo_personal, Departamento_p, contanto_p, Calificacion_p;
