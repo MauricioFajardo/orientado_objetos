@@ -1,23 +1,27 @@
 
 package Clases;
 
+import java.util.Date;
+
 public class Patrocinador extends Persona{
     private String codigo_patri;//llave primaria
     private String Descripcion_p, Contacto_p, Redes_Sociales;
-    private String cedula;// llave secundaria de persona
+    private String cedula_perso;// llave secundaria de persona
 
     public Patrocinador() {
         super();
     }
 
-    public Patrocinador(String codigo_patri, String Descripcion_p, String Contacto_p, String Redes_Sociales, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, int edad, char genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, edad, genero);
+    public Patrocinador(String codigo_patri, String Descripcion_p, String Contacto_p, String Redes_Sociales, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
         this.codigo_patri = codigo_patri;
         this.Descripcion_p = Descripcion_p;
         this.Contacto_p = Contacto_p;
         this.Redes_Sociales = Redes_Sociales;
-        this.cedula = cedula;
+        this.cedula_perso = cedula_perso;
     }
+
+    
 
     public String getCodigo_patri() {
         return codigo_patri;
@@ -51,13 +55,15 @@ public class Patrocinador extends Persona{
         this.Redes_Sociales = Redes_Sociales;
     }
 
-    public String getCedula() {
-        return cedula;
+    public String getCedula_perso() {
+        return cedula_perso;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setCedula_perso(String cedula_perso) {
+        this.cedula_perso = cedula_perso;
     }
+
+    
     
     
     

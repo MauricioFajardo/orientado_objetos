@@ -1,24 +1,28 @@
 
 package Clases;
 
+import java.util.Date;
+
 public class Administrador extends Persona{
     private String codigo_dmin;
     private String usuario, contraseña;
-    private String cedula; //llave secundaria de persona
+    private String cedula_perso; //llave secundaria de persona
     private String codigo_orga;// llave secundaria de ordanizadores
 
     public Administrador() {
         super();
     }
 
-    public Administrador(String codigo_dmin, String usuario, String contraseña, String codigo_orga, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, int edad, char genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, edad, genero);
+    public Administrador(String codigo_dmin, String usuario, String contraseña, String cedula_perso, String codigo_orga, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
         this.codigo_dmin = codigo_dmin;
         this.usuario = usuario;
         this.contraseña = contraseña;
-        this.cedula = cedula;
+        this.cedula_perso = cedula_perso;
         this.codigo_orga = codigo_orga;
     }
+
+    
 
     public String getCodigo_dmin() {
         return codigo_dmin;
@@ -44,14 +48,15 @@ public class Administrador extends Persona{
         this.contraseña = contraseña;
     }
 
-    @Override
-    public String getCedula() {
-        return cedula;
+    public String getCedula_perso() {
+        return cedula_perso;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setCedula_perso(String cedula_perso) {
+        this.cedula_perso = cedula_perso;
     }
+
+    
 
     public String getCodigo_orga() {
         return codigo_orga;

@@ -1,16 +1,18 @@
 
 package Clases;
 
+import java.util.Date;
+
 public class Persona {
     private String cedula, nombre, apellido, telefono, correo, direccion, celular;
-    //private Date fecchaNaci;
+    private Date fecchaNaci;
     private int edad;
-    private char genero;
+    private String genero;
 
     public Persona() {
     }
 
-    public Persona(String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, int edad, char genero) {
+    public Persona(String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -18,9 +20,12 @@ public class Persona {
         this.correo = correo;
         this.direccion = direccion;
         this.celular = celular;
+        this.fecchaNaci = fecchaNaci;
         this.edad = edad;
         this.genero = genero;
     }
+
+    
 
     public String getCedula() {
         return cedula;
@@ -86,13 +91,22 @@ public class Persona {
         this.edad = edad;
     }
 
-    public char getGenero() {
+    public Date getFecchaNaci() {
+        return fecchaNaci;
+    }
+
+    public void setFecchaNaci(Date fecchaNaci) {
+        this.fecchaNaci = fecchaNaci;
+    }
+
+    public String getGenero() {
         return genero;
     }
 
-    public void setGenero(char genero) {
+    public void setGenero(String genero) {
         this.genero = genero;
     }
-     
+
+    
     
 }

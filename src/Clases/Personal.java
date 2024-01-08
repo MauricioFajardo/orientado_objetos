@@ -2,26 +2,29 @@
 package Clases;
 
 import Clases.Persona;
+import java.util.Date;
 
 public class Personal extends Persona{
     private String codigo_perso;//llave primraria
     private String Tipo_personal, Departamento_p, contanto_p, Calificacion_p;
   //  private Date Fecha_contrato;
-    private String cedula;//llave secundaria de persona
+    private String cedula_perso;//llave secundaria de persona
 
     public Personal() {
         super();
     }
 
-    public Personal(String codigo_perso, String Tipo_personal, String Departamento_p, String contanto_p, String Calificacion_p, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, int edad, char genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, edad, genero);
+    public Personal(String codigo_perso, String Tipo_personal, String Departamento_p, String contanto_p, String Calificacion_p, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
         this.codigo_perso = codigo_perso;
         this.Tipo_personal = Tipo_personal;
         this.Departamento_p = Departamento_p;
         this.contanto_p = contanto_p;
         this.Calificacion_p = Calificacion_p;
-        this.cedula = cedula;
+        this.cedula_perso = cedula_perso;
     }
+
+    
 
     public String getCodigo_perso() {
         return codigo_perso;
@@ -63,12 +66,14 @@ public class Personal extends Persona{
         this.Calificacion_p = Calificacion_p;
     }
 
-    public String getCedula() {
-        return cedula;
+    public String getCedula_perso() {
+        return cedula_perso;
     }
 
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setCedula_perso(String cedula_perso) {
+        this.cedula_perso = cedula_perso;
     }
+
+    
       
 }

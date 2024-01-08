@@ -1,25 +1,30 @@
 
 package Clases;
 
+import java.util.Date;
+
 public class Comerciantes extends Persona{
     private String codigo_participante;//llave primaria
-    private String cedula, Tipo_Comercio, Productos_c, Servicio_c, Contacto_c;
+    private String cedula_perso, Tipo_Comercio, Productos_c, Servicio_c, Contacto_c;
     private String codigo_puesto;//llave secundaria
 
     public Comerciantes() {
         super();
     }
 
-    public Comerciantes(String codigo_participante, String cedula, String Tipo_Comercio, String Productos_c, String Servicio_c, String Contacto_c, String codigo_puesto, String nombre, String apellido, String telefono, String correo, String direccion, String celular, int edad, char genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, edad, genero);
+    public Comerciantes(String codigo_participante, String cedula_perso, String Tipo_Comercio, String Productos_c, String Servicio_c, String Contacto_c, String codigo_puesto, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
         this.codigo_participante = codigo_participante;
-        this.cedula = cedula;
+        this.cedula_perso = cedula_perso;
         this.Tipo_Comercio = Tipo_Comercio;
         this.Productos_c = Productos_c;
         this.Servicio_c = Servicio_c;
         this.Contacto_c = Contacto_c;
         this.codigo_puesto = codigo_puesto;
     }
+    
+
+    
 
     public String getCodigo_participante() {
         return codigo_participante;
@@ -29,14 +34,15 @@ public class Comerciantes extends Persona{
         this.codigo_participante = codigo_participante;
     }
 
-    public String getCedula() {
-        return cedula;
+    public String getCedula_perso() {
+        return cedula_perso;
     }
 
-    @Override
-    public void setCedula(String cedula) {
-        this.cedula = cedula;
+    public void setCedula_perso(String cedula_perso) {
+        this.cedula_perso = cedula_perso;
     }
+
+    
 
     public String getTipo_Comercio() {
         return Tipo_Comercio;
