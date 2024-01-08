@@ -32,9 +32,9 @@ public class Login_Administradoor extends javax.swing.JFrame {
             if (auxUsuario.equals(usuario) && auxPassword.equals(contraseña)) {
                 //JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA");
 
-//                this.dispose();
-//                V_Administador v = new V_Administador();
-//                v.setVisible(true);
+                this.dispose();
+                Menu_Administradorr v = new Menu_Administradorr();
+                v.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(null, " ERROR: Usuario / contraseña incorrecto");
             }
