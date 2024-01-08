@@ -18,8 +18,8 @@ public class Publico extends Persona{
         super ();
     }
 
-    public Publico(String codigo_publico, String Tipo_Entrada, String Estado_reguistro, String Preferencias_p, double Pago_p, String codigo_sube_ima, String codigo_encuesta, String califica_eve, String codigo_comen, String cedula_persona, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
+    public Publico(String codigo_publico, String Tipo_Entrada, String Estado_reguistro, String Preferencias_p, double Pago_p, String codigo_sube_ima, String codigo_encuesta, String califica_eve, String codigo_comen, String cedula_persona, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.codigo_publico = codigo_publico;
         this.Tipo_Entrada = Tipo_Entrada;
         this.Estado_reguistro = Estado_reguistro;
@@ -32,9 +32,6 @@ public class Publico extends Persona{
         this.cedula_persona = cedula_persona;
     }
 
-    
-    
-    
 
     public String getCodigo_publico() {
         return codigo_publico;

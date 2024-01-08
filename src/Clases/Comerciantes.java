@@ -12,8 +12,8 @@ public class Comerciantes extends Persona{
         super();
     }
 
-    public Comerciantes(String codigo_participante, String cedula_perso, String Tipo_Comercio, String Productos_c, String Servicio_c, String Contacto_c, String codigo_puesto, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
+    public Comerciantes(String codigo_participante, String cedula_perso, String Tipo_Comercio, String Productos_c, String Servicio_c, String Contacto_c, String codigo_puesto, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.codigo_participante = codigo_participante;
         this.cedula_perso = cedula_perso;
         this.Tipo_Comercio = Tipo_Comercio;
@@ -22,9 +22,8 @@ public class Comerciantes extends Persona{
         this.Contacto_c = Contacto_c;
         this.codigo_puesto = codigo_puesto;
     }
-    
 
-    
+
 
     public String getCodigo_participante() {
         return codigo_participante;

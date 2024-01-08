@@ -13,16 +13,14 @@ public class Administrador extends Persona{
         super();
     }
 
-    public Administrador(String codigo_dmin, String usuario, String contraseña, String cedula_perso, String codigo_orga, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
+    public Administrador(String codigo_dmin, String usuario, String contraseña, String cedula_perso, String codigo_orga, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.codigo_dmin = codigo_dmin;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.cedula_perso = cedula_perso;
         this.codigo_orga = codigo_orga;
     }
-
-    
 
     public String getCodigo_dmin() {
         return codigo_dmin;

@@ -14,8 +14,8 @@ public class Personal extends Persona{
         super();
     }
 
-    public Personal(String codigo_perso, String Tipo_personal, String Departamento_p, String contanto_p, String Calificacion_p, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
-        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, edad, genero);
+    public Personal(String codigo_perso, String Tipo_personal, String Departamento_p, String contanto_p, String Calificacion_p, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.codigo_perso = codigo_perso;
         this.Tipo_personal = Tipo_personal;
         this.Departamento_p = Departamento_p;
@@ -23,6 +23,8 @@ public class Personal extends Persona{
         this.Calificacion_p = Calificacion_p;
         this.cedula_perso = cedula_perso;
     }
+
+    
 
     
 

@@ -5,14 +5,13 @@ import java.util.Date;
 
 public class Persona {
     private String cedula, nombre, apellido, telefono, correo, direccion, celular;
-    private Date fecchaNaci;
-    private int edad;
+    private String fecchaNaci;
     private String genero;
 
     public Persona() {
     }
 
-    public Persona(String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, int edad, String genero) {
+    public Persona(String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
         this.cedula = cedula;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -21,11 +20,9 @@ public class Persona {
         this.direccion = direccion;
         this.celular = celular;
         this.fecchaNaci = fecchaNaci;
-        this.edad = edad;
         this.genero = genero;
     }
 
-    
 
     public String getCedula() {
         return cedula;
@@ -83,21 +80,15 @@ public class Persona {
         this.celular = celular;
     }
 
-    public int getEdad() {
-        return edad;
-    }
-
-    public void setEdad(int edad) {
-        this.edad = edad;
-    }
-
-    public Date getFecchaNaci() {
+    public String getFecchaNaci() {
         return fecchaNaci;
     }
 
-    public void setFecchaNaci(Date fecchaNaci) {
+    public void setFecchaNaci(String fecchaNaci) {
         this.fecchaNaci = fecchaNaci;
     }
+
+    
 
     public String getGenero() {
         return genero;
