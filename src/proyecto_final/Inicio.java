@@ -9,14 +9,14 @@ package proyecto_final;
  *
  * @author Lenovo.User
  */
-
 public class Inicio extends javax.swing.JFrame {
 
     /**
      * Creates new form Inicio
      */
     //public static String direccion = "C:\\Users\\Lenovo.User\\Documents\\base_orientada\\proyecto_final.yap";
-    public static String direccion = "C:\\Users\\HP\\Documents\\GitHub\\orientado_objetos\\proycf.yap";
+    //public static String direccion = "C:\\Users\\HP\\Documents\\GitHub\\orientado_objetos\\proycf.yap";
+    public static String direccion = "C:\\Users\\eliza\\OneDrive\\Documentos\\GitHub\\Proyceto_Final.yap";
 
     public Inicio() {
         initComponents();

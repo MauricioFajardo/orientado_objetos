@@ -17,6 +17,9 @@ public class Menu_Administradorr extends javax.swing.JFrame {
     Crud_Organizador organizador = new Crud_Organizador();
     Info_Administrador inf = new Info_Administrador();
     Asignar_Credencialess creden = new Asignar_Credencialess();
+    ConsultarOrganizador orgaconsultar = new ConsultarOrganizador();
+    EliminarOrganizador orgaeliminar = new EliminarOrganizador();
+    ReporteOrganizador orgareporte = new ReporteOrganizador();
 
     CardLayout vista;
 
@@ -107,6 +110,11 @@ public class Menu_Administradorr extends javax.swing.JFrame {
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/basura (2).png"))); // NOI18N
         jButton5.setText("Eliminar Organizador");
         jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -225,6 +233,10 @@ public class Menu_Administradorr extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        pnldinamico.add(orgareporte, "crud");
+        vista.show(pnldinamico, "crud");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -243,7 +255,19 @@ public class Menu_Administradorr extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        pnldinamico.add(orgaconsultar, "crud");
+        vista.show(pnldinamico, "crud");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        pnldinamico.add(orgaeliminar, "crud");
+        vista.show(pnldinamico, "crud");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
