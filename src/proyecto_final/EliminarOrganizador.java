@@ -42,8 +42,6 @@ public class EliminarOrganizador extends javax.swing.JPanel {
         jTableDatos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
-        jLabel2 = new javax.swing.JLabel();
-        txtCedulaOrganizador = new javax.swing.JTextField();
         btnEliminar = new javax.swing.JButton();
         btnCargarTabla = new javax.swing.JButton();
 
@@ -91,7 +89,7 @@ public class EliminarOrganizador extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 883, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -108,9 +106,7 @@ public class EliminarOrganizador extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel2.setText("Ingresar la cédula del Organizador a eliminar: ");
-
+        btnEliminar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/expediente.png"))); // NOI18N
         btnEliminar.setText("Eliminar");
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +115,8 @@ public class EliminarOrganizador extends javax.swing.JPanel {
             }
         });
 
+        btnCargarTabla.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnCargarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dispositivo.png"))); // NOI18N
         btnCargarTabla.setText("Cargar Tabla");
         btnCargarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,16 +135,12 @@ public class EliminarOrganizador extends javax.swing.JPanel {
                     .addComponent(jSeparator1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
+                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(txtCedulaOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(31, 31, 31)
                                 .addComponent(btnEliminar)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCargarTabla)))
-                        .addGap(0, 410, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -156,14 +150,11 @@ public class EliminarOrganizador extends javax.swing.JPanel {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(9, 9, 9)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCedulaOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnEliminar)
                     .addComponent(btnCargarTabla))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(23, 23, 23)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -284,13 +275,11 @@ public class EliminarOrganizador extends javax.swing.JPanel {
     private javax.swing.JButton btnCargarTabla;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable jTableDatos;
-    private javax.swing.JTextField txtCedulaOrganizador;
     // End of variables declaration//GEN-END:variables
 private void cargarTabla(ObjectContainer base) {
         DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
