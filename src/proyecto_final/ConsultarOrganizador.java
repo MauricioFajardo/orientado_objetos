@@ -44,8 +44,10 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         btnBuscar = new javax.swing.JButton();
         txtCedulaOrganizador = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -99,15 +101,20 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 115, 902, -1));
+
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista.png"))); // NOI18N
         jLabel1.setText("Consultar Organizador ");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 41, 902, -1));
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel2.setText("Ingresar la cédula del Organizador a buscar: ");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 61, -1, -1));
 
         btnBuscar.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda (1)_1.png"))); // NOI18N
@@ -117,44 +124,22 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
                 btnBuscarActionPerformed(evt);
             }
         });
+        jPanel1.add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(302, 84, -1, -1));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtCedulaOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, 254, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(38, 38, 38)
-                                .addComponent(btnBuscar))
-                            .addComponent(jLabel1)
-                            .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 902, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jLabel2)
-                .addGap(7, 7, 7)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnBuscar)
-                    .addComponent(txtCedulaOrganizador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        txtCedulaOrganizador.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtCedulaOrganizadorMouseClicked(evt);
+            }
+        });
+        jPanel1.add(txtCedulaOrganizador, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, 254, -1));
+
+        jButton1.setText("CARGAR TABLA");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 80, -1, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -183,40 +168,87 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
 
             ObjectSet<Organizador> result = query.execute();
 
-            String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", "Usuario", "Contraseña", "Presupuesto", "Fecha de Nacimiento"};
+            if (result.isEmpty()) {
+                // Si no se encuentra la cédula en la base de datos
+                JOptionPane.showMessageDialog(null, "El número de cédula no se encuentra en la base de datos", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", "Usuario", "Contraseña", "Presupuesto", "Fecha de Nacimiento"};
 
-            Object[][] data = new Object[result.size()][13];
+                Object[][] data = new Object[result.size()][13];
 
-            int i = 0;
-            for (Organizador organizador : result) {
-                data[i][0] = organizador.getCod_organizador();
-                data[i][1] = organizador.getCedula();
-                data[i][2] = organizador.getNombre();
-                data[i][3] = organizador.getApellido();
-                data[i][4] = organizador.getCelular();
-                data[i][5] = organizador.getTelefono();
-                data[i][6] = organizador.getDireccion();
-                data[i][7] = organizador.getGenero();
-                data[i][8] = organizador.getCorreo();
-                data[i][9] = organizador.getUsuario();
-                data[i][10] = organizador.getContraseña();
-                data[i][11] = organizador.getPresupuesto();
-                data[i][12] = organizador.getFecchaNaci();
+                int i = 0;
+                for (Organizador organizador : result) {
+                    data[i][0] = organizador.getCod_organizador();
+                    data[i][1] = organizador.getCedula();
+                    data[i][2] = organizador.getNombre();
+                    data[i][3] = organizador.getApellido();
+                    data[i][4] = organizador.getCelular();
+                    data[i][5] = organizador.getTelefono();
+                    data[i][6] = organizador.getDireccion();
+                    data[i][7] = organizador.getGenero();
+                    data[i][8] = organizador.getCorreo();
+                    data[i][9] = organizador.getUsuario();
+                    data[i][10] = organizador.getContraseña();
+                    data[i][11] = organizador.getPresupuesto();
+                    data[i][12] = organizador.getFecchaNaci();
 
-                i++;
+                    i++;
+                }
+
+                DefaultTableModel model = new DefaultTableModel(data, columnNames);
+                jTableDatos.setModel(model);
+
+                // Mensaje adicional al encontrar el organizador
+                JOptionPane.showMessageDialog(null, "Organizador encontrado", "Éxito", JOptionPane.INFORMATION_MESSAGE);
             }
-
-            DefaultTableModel model = new DefaultTableModel(data, columnNames);
-            jTableDatos.setModel(model);
         }
 
         base.close();
 
+
     }//GEN-LAST:event_btnBuscarActionPerformed
 
+    private void txtCedulaOrganizadorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtCedulaOrganizadorMouseClicked
+        txtCedulaOrganizador.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaOrganizadorMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        cargarTabla(base);
+
+        base.close();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+    private void cargarTabla(ObjectContainer base) {
+        DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de cargar los datos
+
+        ObjectSet<Organizador> result = base.queryByExample(Organizador.class);
+
+        while (result.hasNext()) {
+            Organizador organizador = result.next();
+
+            Object[] row = {
+                organizador.getCod_organizador(),
+                organizador.getCedula(),
+                organizador.getNombre(),
+                organizador.getApellido(),
+                organizador.getCelular(),
+                organizador.getTelefono(),
+                organizador.getDireccion(),
+                organizador.getGenero(),
+                organizador.getCorreo(),
+                organizador.getUsuario(),
+                organizador.getContraseña(),
+                organizador.getPresupuesto(),
+                organizador.getFecchaNaci(),};
+            model.addRow(row);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

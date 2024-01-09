@@ -445,6 +445,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         txtapellido.setEnabled(true);
         txtnombre.setEnabled(true);
         txtusuario.setEnabled(true);
+        txtpass.setEnabled(true);
         txtconsulta.setEnabled(true);
     }
 
