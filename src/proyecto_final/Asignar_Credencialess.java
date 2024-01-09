@@ -115,6 +115,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         jLabel3.setText("NOMBRE:");
         add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 210, -1, -1));
 
+        txtconsulta.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txtconsulta.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 txtconsultaMouseClicked(evt);
@@ -141,6 +142,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         jLabel4.setText("APELLIDO:");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 200, -1, 40));
 
+        txtnombre.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txtnombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtnombreKeyTyped(evt);
@@ -148,6 +150,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         });
         add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 210, 180, -1));
 
+        txtapellido.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtapellidoKeyTyped(evt);

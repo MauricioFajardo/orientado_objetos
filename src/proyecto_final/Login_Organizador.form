@@ -65,21 +65,21 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="18" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="BIENVENIDO"/>
+                <Property name="text" type="java.lang.String" value="BIENVENIDO ORGANIZADOR"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="185" y="59" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="130" y="60" width="-1" height="-1"/>
                 </Constraint>
               </Constraints>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Log in to yuor account to continue"/>
+                <Property name="text" type="java.lang.String" value="Inicie sesi&#xf3;n en su cuenta para continuar"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="163" y="101" width="-1" height="-1"/>
+                  <AbsoluteConstraints x="150" y="100" width="-1" height="20"/>
                 </Constraint>
               </Constraints>
             </Component>

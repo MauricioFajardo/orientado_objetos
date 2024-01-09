@@ -21,7 +21,7 @@ public class Login_Organizador extends javax.swing.JFrame {
     String usuario = " ", password = " ";
 
     public Login_Organizador() {
-        setLocationRelativeTo(null);
+        
         initComponents();
     }
 
@@ -63,11 +63,11 @@ public class Login_Organizador extends javax.swing.JFrame {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jLabel2.setText("BIENVENIDO");
-        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 59, -1, -1));
+        jLabel2.setText("BIENVENIDO ORGANIZADOR");
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 60, -1, -1));
 
-        jLabel3.setText("Log in to yuor account to continue");
-        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 101, -1, -1));
+        jLabel3.setText("Inicie sesión en su cuenta para continuar");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 100, -1, 20));
 
         txtusuario.setBackground(new java.awt.Color(0, 153, 153));
         txtusuario.setText("Ingrese el Usuario");
@@ -151,6 +151,7 @@ public class Login_Organizador extends javax.swing.JFrame {
     private void btnIniciarSecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSecioActionPerformed
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
+        setLocationRelativeTo(null);
         Query query = base.query();
         query.constrain(Organizador.class);
         query.descend("usuario").constrain(txtusuario.getText().trim());
