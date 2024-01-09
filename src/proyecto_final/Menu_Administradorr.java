@@ -16,6 +16,7 @@ public class Menu_Administradorr extends javax.swing.JFrame {
 
     Crud_Organizador organizador = new Crud_Organizador();
     Info_Administrador inf = new Info_Administrador();
+    Asignar_Credencialess creden = new Asignar_Credencialess();
 
     CardLayout vista;
 
@@ -222,7 +223,10 @@ public class Menu_Administradorr extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        pnldinamico.add(creden, "crud");
+        vista.show(pnldinamico, "crud");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();            // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
