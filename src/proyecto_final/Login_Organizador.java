@@ -5,16 +5,23 @@
  */
 package proyecto_final;
 
+import Clases.Organizador;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import com.db4o.query.Query;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author eliza
  */
 public class Login_Organizador extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Login_Organizador
-     */
+    String usuario = " ", password = " ";
+
     public Login_Organizador() {
+        setLocationRelativeTo(null);
         initComponents();
     }
 
@@ -31,13 +38,13 @@ public class Login_Organizador extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jPasswordField1 = new javax.swing.JPasswordField();
+        txtusuario = new javax.swing.JTextField();
+        txtcantra = new javax.swing.JPasswordField();
         jSeparator1 = new javax.swing.JSeparator();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btnIniciarSecio = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
@@ -62,20 +69,20 @@ public class Login_Organizador extends javax.swing.JFrame {
         jLabel3.setText("Log in to yuor account to continue");
         jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(163, 101, -1, -1));
 
-        jTextField1.setBackground(new java.awt.Color(0, 153, 153));
-        jTextField1.setText("Ingrese el Usuario");
-        jTextField1.setBorder(null);
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+        txtusuario.setBackground(new java.awt.Color(0, 153, 153));
+        txtusuario.setText("Ingrese el Usuario");
+        txtusuario.setBorder(null);
+        txtusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
+                txtusuarioActionPerformed(evt);
             }
         });
-        jPanel2.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 203, 200, 40));
+        jPanel2.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 203, 200, 40));
 
-        jPasswordField1.setBackground(new java.awt.Color(0, 153, 153));
-        jPasswordField1.setText("jPasswordField1");
-        jPasswordField1.setBorder(null);
-        jPanel2.add(jPasswordField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 281, 200, 40));
+        txtcantra.setBackground(new java.awt.Color(0, 153, 153));
+        txtcantra.setText("jPasswordField1");
+        txtcantra.setBorder(null);
+        jPanel2.add(txtcantra, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 281, 200, 40));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 261, 200, -1));
@@ -89,10 +96,15 @@ public class Login_Organizador extends javax.swing.JFrame {
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/bloquear.png"))); // NOI18N
         jPanel2.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(111, 281, -1, 40));
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquema-del-boton-de-flecha-cuadrada-de-inicio-de-sesion.png"))); // NOI18N
-        jButton1.setText("Iniciar Sesión ");
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 150, -1));
+        btnIniciarSecio.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        btnIniciarSecio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/esquema-del-boton-de-flecha-cuadrada-de-inicio-de-sesion.png"))); // NOI18N
+        btnIniciarSecio.setText("Iniciar Sesión ");
+        btnIniciarSecio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarSecioActionPerformed(evt);
+            }
+        });
+        jPanel2.add(btnIniciarSecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 150, -1));
 
         jLabel6.setText("Forgot your password? ");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
@@ -132,9 +144,42 @@ public class Login_Organizador extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void txtusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtusuarioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }//GEN-LAST:event_txtusuarioActionPerformed
+
+    private void btnIniciarSecioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarSecioActionPerformed
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        Query query = base.query();
+        query.constrain(Organizador.class);
+        query.descend("usuario").constrain(txtusuario.getText().trim());
+        query.descend("contraseña").constrain(txtcantra.getText().trim());
+
+        ObjectSet<Organizador> result = query.execute();
+
+        if (!result.isEmpty()) {
+
+            for (Organizador organizador : result) {
+                usuario = organizador.getUsuario();
+                password = organizador.getContraseña();
+
+            }
+
+            this.dispose();
+            MenuOrganizador admin = new MenuOrganizador();
+            admin.setVisible(true);
+
+            txtusuario.setText(usuario.trim());
+            txtcantra.setText(password.trim());
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos");
+        }
+
+        base.close();
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarSecioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,7 +217,7 @@ public class Login_Organizador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnIniciarSecio;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -186,10 +231,10 @@ public class Login_Organizador extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JPasswordField txtcantra;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
