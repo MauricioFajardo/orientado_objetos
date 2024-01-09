@@ -65,11 +65,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
         txttelefono = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         txtcodigo = new javax.swing.JTextField();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        txtusuario = new javax.swing.JTextField();
-        txtcontra = new javax.swing.JTextField();
         txtpresupuesto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         rbnmasculino = new javax.swing.JRadioButton();
@@ -77,12 +73,13 @@ public class Crud_Organizador extends javax.swing.JPanel {
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel16 = new javax.swing.JLabel();
 
+        jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/gestion-del-tiempo.png"))); // NOI18N
         jLabel1.setText("ORGANIZADORES");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 46, -1, -1));
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 40, -1, -1));
 
         jLabel2.setText("CEDULA:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
@@ -101,7 +98,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
         jPanel1.add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 140, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lOGO1.png"))); // NOI18N
-        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 19, -1, -1));
+        jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
 
         jLabel7.setText("DIRECCION:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, 20));
@@ -115,7 +112,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
 
         jLabel10.setText("CORREO:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 204, -1, 30));
         jPanel1.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 160, -1));
 
         jLabel11.setText("TELEFONO");
@@ -123,38 +120,31 @@ public class Crud_Organizador extends javax.swing.JPanel {
         jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 140, -1));
 
         jLabel12.setText("CODIGO ORGANIZADOR");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, 30));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 30));
         jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 160, -1));
 
-        jLabel13.setText("USUARIO:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, 20));
-
-        jLabel14.setText("CONTRASEÑA:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 20));
-
         jLabel15.setText("FECHA DE NACIMIENTO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 20));
-        jPanel1.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 160, -1));
-        jPanel1.add(txtcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 160, -1));
-        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 160, -1));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 20));
+        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 160, -1));
 
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/disco-flexible.png"))); // NOI18N
         jButton1.setText("CREAR");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, -1, -1));
 
         rbnmasculino.setText("Masculino");
         jPanel1.add(rbnmasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, -1, -1));
 
         rbnfemenino.setText("Femenino");
         jPanel1.add(rbnfemenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 160, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 160, -1));
 
         jLabel16.setText("PRESUPUESTO:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, -1, 20));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -221,8 +211,6 @@ public class Crud_Organizador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
@@ -241,12 +229,10 @@ public class Crud_Organizador extends javax.swing.JPanel {
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtcelular;
     private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtcontra;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtnombre;
     private javax.swing.JTextField txtpresupuesto;
     private javax.swing.JTextField txttelefono;
-    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
