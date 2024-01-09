@@ -5,27 +5,24 @@
  */
 package conexion_bada;
 
-import Clases.Administrador;
+import Clases.Organizador;
+import Clases.Persona;
 import basedatos.Conexion;
-import java.sql.Connection;
-//import java.beans.Statement;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.sql.PreparedStatement;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 /**
  *
- * @author USER
+ * @author HP
  */
-public class Insert_administrador extends Administrador {
+public class Insert_Organizador extends Organizador {
 
     Conexion cone = new Conexion();
 
@@ -59,15 +56,16 @@ public class Insert_administrador extends Administrador {
         }
     }
 
-    public boolean InsertarAdministrador() {
-        String sql = "INSERT INTO administrador (codigo_admi, usuario_admi, contrasenia_admi, cedu_persona)"
-                + " VALUES (?, ?, ?, ?)";
+    public boolean InsertarOrganizador() {
+        String sql = "INSERT INTO organizador (codigo_orga, usuario_orga, contrasenia_orga,presupuesto_orga ,cedu_persona)"
+                + " VALUES (?, ?, ?, ?, ?)";
         try {
             PreparedStatement statement = cone.getCon().prepareStatement(sql);
-            statement.setString(1, getCodigo_dmin());
+            statement.setString(1, getCod_organizador());
             statement.setString(2, getUsuario());
             statement.setString(3, getContraseña());
-            statement.setString(4, getCedula());
+            statement.setString(4, getPresupuesto());
+            statement.setString(5, getCedula());
 
             int rowsAffected = statement.executeUpdate();
             statement.close();
@@ -78,17 +76,20 @@ public class Insert_administrador extends Administrador {
             return false;
         }
     }
-
-    public List<Administrador> ListaAdministrador() {
-        String sqls = "SELECT * FROM persona per JOIN administrador admi ON per.per_cedula = admi.cedu_persona";
+    
+    
+    
+    public List<Organizador> ListaOrganizador() {
+        String sqls = "SELECT * FROM persona per JOIN organizador orga ON per.per_cedula = orga.cedu_persona";
         ResultSet rs = cone.selectConsulta(sqls);
-        List<Administrador> admin = new ArrayList<>();
+        List<Organizador> admin = new ArrayList<>();
         try {
             while (rs.next()) {
-                Administrador mi_admin = new Administrador();
-                mi_admin.setCodigo_dmin(rs.getString("codigo_admi"));
-                mi_admin.setUsuario(rs.getString("usuario_admi"));
-                mi_admin.setContraseña(rs.getString("contrasenia_admi"));
+                Organizador mi_admin = new Organizador();
+                mi_admin.setCod_organizador(rs.getString("codigo_orga"));
+                mi_admin.setUsuario(rs.getString("usuario_orga"));
+                mi_admin.setContraseña(rs.getString("contrasenia_orga"));
+                mi_admin.setPresupuesto(rs.getString("presupuesto_orga"));
                 mi_admin.setCedula(rs.getString("cedu_persona"));
                 mi_admin.setCedula_perso(rs.getString("per_cedula"));
 
@@ -102,24 +103,24 @@ public class Insert_administrador extends Administrador {
                 mi_admin.setCelular(rs.getString("per_celular"));
                 mi_admin.setFecchaNaci(rs.getString("per_fecha_nacimiento"));
                 mi_admin.setGenero(rs.getString("per_genero"));
-              
 
                 admin.add(mi_admin);
             }
             rs.close();
             return admin;
         } catch (SQLException ex) {
-            Logger.getLogger(Insert_administrador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Insert_Organizador.class.getName()).log(Level.SEVERE, null, ex);
             return null;
         }
     }
-
+    
+    
     // verificar que no se repita uuna llave primaria en ropa
-    public boolean verificarDuplicidadCodAdmin(String codigoAdmi) {
-        String sql = "SELECT COUNT(*) AS count FROM administrador WHERE codigo_admi = ?";
+    public boolean verificarDuplicidadCodAdmin(String codigoOrga) {
+        String sql = "SELECT COUNT(*) AS count FROM organizador WHERE codigo_orga = ?";
         try {
             PreparedStatement statement = cone.getCon().prepareStatement(sql);
-            statement.setString(1, codigoAdmi);
+            statement.setString(1, codigoOrga);
             ResultSet rs = statement.executeQuery();
             if (rs.next()) {
                 int count = rs.getInt("count");
@@ -132,47 +133,4 @@ public class Insert_administrador extends Administrador {
         }
         return false;
     }
-
-//    public static ArrayList<String> obtenerCodigosAdministradorDesdeBaseDeDatos() {
-//        ArrayList<String> codigosAdministrador = new ArrayList<>();
-//
-//        try (Connection conexion = new Conexion().getCon();
-//                PreparedStatement pst = conexion.prepareStatement("SELECT codigo_admi FROM administrador");
-//                ResultSet rs = pst.executeQuery()) {
-//
-//            while (rs.next()) {
-//                String codigoAdmin = rs.getString("codigo_admi");
-//                codigosAdministrador.add(codigoAdmin);
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        return codigosAdministrador;
-//    }
-
-//    public static String[] obtenerDetallesAdministradorDesdeBaseDeDatos(String codigoAdmin) throws SQLException {
-//        try (Connection conexion = new Conexion().getCon();
-//                PreparedStatement pst = conexion.prepareStatement(
-//                        "SELECT per_cedula, per_primer_nombre, per_primer_apellido "
-//                        + "FROM persona "
-//                        + "INNER JOIN administrador ON persona.per_cedula = administrador.cedu_persona "
-//                        + "WHERE administrador.codigo_admi = ?")) {
-//
-//            pst.setString(1, codigoAdmin);
-//
-//            try (ResultSet rs = pst.executeQuery()) {
-//                if (rs.next()) {
-//                    String cedula = rs.getString("per_cedula");
-//                    String nombre = rs.getString("per_primer_nombre");
-//                    String apellido = rs.getString("per_primer_apellido");
-//                    return new String[]{cedula, nombre, apellido};
-//                }
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//
-//        return null;
-//    }
 }
