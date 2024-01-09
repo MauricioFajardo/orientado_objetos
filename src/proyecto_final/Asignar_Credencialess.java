@@ -10,6 +10,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -38,36 +39,33 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         habiltarDatos();
 
         // Crear objeto Organizador con la cédula ingresada
-        Organizador miOrganizador = new Organizador(null, txtconsulta.getText().trim(), null, 0, null, null, null, null, null, null, null, null, null);
+        Organizador miOrganizador = new Organizador(null, null, null, 0.0, txtconsulta.getText().trim(), null, null, null, null, null, null, null, null);
 
         // Obtener el objeto existente desde la base de datos
         ObjectSet result = base.get(miOrganizador);
+        Organizador miorganizador = (Organizador) result.next();
 
-        if (result.hasNext()) {
-            Organizador miAgente = (Organizador) result.next();
+        // Actualizar los datos del Organizador
+        miorganizador.setNombre(txtnombre.getText().trim());
+        miorganizador.setApellido(txtapellido.getText().trim());
 
-            // Actualizar los datos del Organizador
-            miAgente.setNombre(txtnombre.getText().trim());
-            miAgente.setApellido(txtapellido.getText().trim());
-            miAgente.setCod_organizador(lblcod.getText().trim());
-            miAgente.setUsuario(txtusuario.getText().trim());
-            miAgente.setContraseña(txtpass.getText().trim());
+        miorganizador.setUsuario(txtusuario.getText().trim());
+        miorganizador.setContraseña(txtpass.getText().trim());
 
-            // Actualizar el objeto en la base de datos
-            base.set(miAgente);
+        // Actualizar el objeto en la base de datos
+        base.set(miorganizador);
 
-            JOptionPane.showMessageDialog(this, "Se establecieron de forma correcta las credenciales");
+        JOptionPane.showMessageDialog(this, "Se establecieron de forma correcta las credenciales del Organizador");
 
-            // Limpiar campos
-            txtconsulta.setText("");
-            lblcod.setText("");
-            txtnombre.setText("");
-            txtapellido.setText("");
+        // Limpiar campos
+        txtconsulta.setText("");
+        lblcod.setText("");
+        txtnombre.setText("");
+        txtapellido.setText("");
 
-            inhabiltarDatos();
-        } else {
-            JOptionPane.showMessageDialog(this, "No se encontró al Organizador con la cédula ingresada en la base de datos.");
-        }
+        inhabiltarDatos();
+        cargarTabla(base);
+
     }
 
     /**
@@ -97,6 +95,8 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         txtusuario = new javax.swing.JTextField();
         txtpass = new javax.swing.JPasswordField();
         lblcod = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -107,7 +107,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
 
         jLabel2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel2.setText("INGRESAR CEDULA:");
-        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 150, -1, -1));
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, 40));
 
         jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         jLabel3.setText("NOMBRE:");
@@ -179,7 +179,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
                 {null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula", "Nombre", "Apellido", "Codigo Organizador", "Usuario", "Contraseña"
+                "CODIGO ORGANIZADOR", "CEDULA", "NOMBRE", "APELLIDO", "USUARIO", "CONTRASEÑA"
             }
         ));
         jScrollPane3.setViewportView(tableasignar);
@@ -196,7 +196,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
                 btnGuardarActionPerformed(evt);
             }
         });
-        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, -1, -1));
+        add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 340, -1, -1));
 
         txtusuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -218,40 +218,52 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         });
         add(txtpass, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 270, 150, -1));
         add(lblcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 40, 50, -1));
+
+        jButton1.setText("LIMPIAR CAMPOS");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, -1, 30));
+
+        jButton2.setText("CARGAR TABLA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 340, -1, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
-        ObjectContainer base = null;
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
-        try {
-            base = Db4o.openFile(Inicio.direccion);
+        String nombre = " ", apellido = " ";
 
-            Query query = base.query();
-            query.constrain(Organizador.class);
-            query.descend("cedula").constrain(txtconsulta.getText().trim());
-            ObjectSet<Organizador> result = query.execute();
+        Query query = base.query();
+        query.constrain(Organizador.class);
+        query.descend("cedula").constrain(txtconsulta.getText().trim());
+        ObjectSet<Organizador> result = query.execute();
 
-            if (!result.isEmpty()) {
-                habiltarDatos();
-
-                Organizador organiza = result.get(0);
-
-                txtnombre.setText(organiza.getNombre().trim());
-                txtapellido.setText(organiza.getApellido().trim());
-                lblcod.setText(organiza.getCod_organizador().trim());
-
-                // Mensaje adicional
-                JOptionPane.showMessageDialog(null, "Organizador encontrado:\nNombre: " + organiza.getNombre() + "\nApellido: " + organiza.getApellido() + "\nCódigo: " + organiza.getCod_organizador());
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró ningún Organizador con la cédula ingresada");
+        if (!result.isEmpty()) {
+            habiltarDatos();
+            for (Organizador orga : result) {
+                nombre = orga.getNombre();
+                apellido = orga.getApellido();
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al buscar al Organizador");
-        } finally {
-            if (base != null) {
-                base.close();
-            }
+            txtnombre.setText(nombre.trim());
+            txtapellido.setText(apellido.trim());
+
+            // Mostrar mensaje indicando que se encontró la cédula y sus datos
+            JOptionPane.showMessageDialog(null, "Cédula encontrada:\nNombre: " + nombre + "\nApellido: " + apellido);
+            inhabiltarDatos2();
+        } else {
+            // Mostrar mensaje indicando que no se encontró la cédula
+            JOptionPane.showMessageDialog(null, "No se encontró ningún Organizador con la cédula ingresada");
         }
+
+        base.close();
 
         // TODO add your handling code here:
     }//GEN-LAST:event_btnBuscarActionPerformed
@@ -260,7 +272,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
         try {
-            // Primero buscamos al organizador por su cédula
+            // Primero buscamos al agente por su cedula
             Query query = base.query();
             query.constrain(Organizador.class);
             query.descend("cedula").constrain(txtconsulta.getText().trim());
@@ -268,47 +280,51 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
             ObjectSet<Organizador> result = query.execute();
 
             if (result.isEmpty()) {
-                // No se encontró al organizador con esa cédula
-                JOptionPane.showMessageDialog(null, "No se encontró al Organizador con esa cédula");
+                // No se encontró al agente con esa cedula
+                JOptionPane.showMessageDialog(null, "No se encontró al Organizador con esa cedula");
             } else {
-                Organizador organizador = result.get(0);
+                // Encontramos al agente, ahora verificamos si tiene un usuario y una contraseña
+                Organizador agente = result.get(0);
 
-                if (organizador.getUsuario() == null || organizador.getContraseña() == null) {
-                    // El organizador no tiene asignado un usuario ni una contraseña
+                if (agente.getUsuario() == null || agente.getContraseña() == null) {
+                    // El agente no tiene asignado un usuario ni una contraseña
                     if (txtusuario.getText().trim().isEmpty() || txtpass.getText().trim().isEmpty()) {
-                        JOptionPane.showMessageDialog(null, "Ingrese un usuario o contraseña");
+                        JOptionPane.showMessageDialog(null, "Ingrese un usuario o cntraseña");
                     } else {
-                        // Subir datos si hay usuario y contraseña ingresados
                         SubirDatos(base);
+
                     }
                 } else {
-                    // El organizador tiene asignado un usuario y una contraseña
+                    // El agente tiene asignado un usuario y una contraseña
                     JOptionPane.showMessageDialog(null, "El Organizador ya tiene asignado un usuario y una contraseña");
-
-                    // Mostrar los datos en una tabla
                     String[] columnNames = {"CODIGO", "CEDULA", "NOMBRE", "APELLIDO", "USUARIO", "CONTRASEÑA"};
+
                     Object[][] data = new Object[result.size()][6];
 
                     int i = 0;
-                    for (Organizador org : result) {
-                        data[i][0] = org.getCod_organizador();
-                        data[i][1] = org.getCedula();
-                        data[i][2] = org.getNombre();
-                        data[i][3] = org.getApellido();
-                        data[i][4] = org.getUsuario();
-                        data[i][5] = org.getContraseña();
+                    for (Organizador organi1 : result) {
+                        data[i][0] = organi1.getCod_organizador();
+                        data[i][1] = organi1.getCedula();
+                        data[i][2] = organi1.getNombre();
+                        data[i][3] = organi1.getApellido();
+                        data[i][4] = organi1.getUsuario();
+                        data[i][5] = organi1.getContraseña();
+
                         i++;
                     }
 
                     DefaultTableModel model = new DefaultTableModel(data, columnNames);
                     tableasignar.setModel(model);
+                    limpiarcampos();
                 }
             }
+
         } catch (IllegalStateException e) {
+            // Código que se ejecutará si se produce la excepción
             JOptionPane.showMessageDialog(null, "Error al buscar al Organizador");
-        } finally {
-            base.close();
         }
+
+        base.close();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
@@ -388,6 +404,18 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
     private void txtpassKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassKeyTyped
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpassKeyTyped
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        limpiarcampos2();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        cargarTabla(base);
+
+        base.close();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
     public void inhabiltarDatos() {
 
         txtapellido.setEnabled(false);
@@ -396,9 +424,35 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         txtpass.setEnabled(false);
     }
 
+    public void inhabiltarDatos2() {
+
+        txtapellido.setEnabled(false);
+        txtnombre.setEnabled(false);
+        txtconsulta.setEnabled(false);
+    }
+
+    public void limpiarcampos() {
+
+        txtpass.setText("");
+        txtapellido.setText("");
+        txtnombre.setText("");
+        txtusuario.setText("");
+        txtconsulta.setText("");
+    }
+
+    public void limpiarcampos2() {
+
+        txtapellido.setEnabled(true);
+        txtnombre.setEnabled(true);
+        txtusuario.setEnabled(true);
+        txtconsulta.setEnabled(true);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -416,4 +470,24 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
     private javax.swing.JPasswordField txtpass;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
+private void cargarTabla(ObjectContainer base) {
+        DefaultTableModel model = (DefaultTableModel) tableasignar.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de cargar los datos
+
+        ObjectSet<Organizador> result = base.queryByExample(Organizador.class);
+
+        while (result.hasNext()) {
+            Organizador organizador = result.next();
+
+            Object[] row = {
+                organizador.getCod_organizador(),
+                organizador.getCedula(),
+                organizador.getNombre(),
+                organizador.getApellido(),
+                organizador.getUsuario(),
+                organizador.getContraseña(),};
+            model.addRow(row);
+        }
+    }
+
 }
