@@ -14,6 +14,8 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
+    public static String direccion = "C:\\Users\\Lenovo.User\\Documents\\base_orientada\\proyecto_final.yap";
+
     public Inicio() {
         initComponents();
         setLocationRelativeTo(null);
@@ -275,7 +277,7 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        Login_Administradoor let = new Login_Administradoor();  
+        Login_Administradoor let = new Login_Administradoor();
         let.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed

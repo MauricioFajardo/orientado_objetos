@@ -64,7 +64,7 @@ public class Insert_Organizador extends Organizador {
             statement.setString(1, getCod_organizador());
             statement.setString(2, getUsuario());
             statement.setString(3, getContraseña());
-            statement.setString(4, getPresupuesto());
+           // statement.setString(4, getPresupuesto());
             statement.setString(5, getCedula());
 
             int rowsAffected = statement.executeUpdate();
@@ -89,9 +89,9 @@ public class Insert_Organizador extends Organizador {
                 mi_admin.setCod_organizador(rs.getString("codigo_orga"));
                 mi_admin.setUsuario(rs.getString("usuario_orga"));
                 mi_admin.setContraseña(rs.getString("contrasenia_orga"));
-                mi_admin.setPresupuesto(rs.getString("presupuesto_orga"));
+                //mi_admin.setPresupuesto(rs.getString("presupuesto_orga"));
                 mi_admin.setCedula(rs.getString("cedu_persona"));
-                mi_admin.setCedula_perso(rs.getString("per_cedula"));
+               // mi_admin.setCedula_perso(rs.getString("per_cedula"));
 
                 mi_admin.setNombre(rs.getString("per_primer_nombre"));
                 mi_admin.setApellido(rs.getString("per_primer_apellido"));

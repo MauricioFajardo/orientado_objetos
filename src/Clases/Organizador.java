@@ -10,22 +10,27 @@ package Clases;
  * @author Lenovo
  */
 public class Organizador extends Persona {
-    
+
     private String cod_organizador;
     private String usuario, contraseña;
-    private String Presupuesto;
-    private String cedula_perso; //llave secundaria de persona
+    private double Presupuesto;
+   //llave secundaria de persona
 
-    public Organizador(String cod_organizador, String usuario, String contraseña, String Presupuesto, String cedula_perso) {
+    public Organizador() {
+        super();
+    }
+
+
+    public Organizador(String cod_organizador, String usuario, String contraseña, double Presupuesto, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+        super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.cod_organizador = cod_organizador;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.Presupuesto = Presupuesto;
-        this.cedula_perso = cedula_perso;
+    
     }
 
-    public Organizador() {
-    }
+    
 
     public String getCod_organizador() {
         return cod_organizador;
@@ -51,28 +56,19 @@ public class Organizador extends Persona {
         this.contraseña = contraseña;
     }
 
-    public String getPresupuesto() {
+    public double getPresupuesto() {
         return Presupuesto;
     }
 
-    public void setPresupuesto(String Presupuesto) {
+    public void setPresupuesto(double Presupuesto) {
         this.Presupuesto = Presupuesto;
-    }
-
-    public String getCedula_perso() {
-        return cedula_perso;
-    }
-
-    public void setCedula_perso(String cedula_perso) {
-        this.cedula_perso = cedula_perso;
     }
 
     @Override
     public String toString() {
-        return "Organizador{" + "cod_organizador=" + cod_organizador + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", Presupuesto=" + Presupuesto + ", cedula_perso=" + cedula_perso + '}';
+        return "Organizador{" + "cod_organizador=" + cod_organizador + ", usuario=" + usuario + ", contrase\u00f1a=" + contraseña + ", Presupuesto=" + Presupuesto + '}';
     }
-    
-    
-    
-    
+
+  
+  
 }

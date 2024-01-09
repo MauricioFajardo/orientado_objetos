@@ -5,6 +5,13 @@
  */
 package proyecto_final;
 
+import Clases.Organizador;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.swing.ButtonGroup;
+
 /**
  *
  * @author HP
@@ -16,6 +23,14 @@ public class Crud_Organizador extends javax.swing.JPanel {
      */
     public Crud_Organizador() {
         initComponents();
+
+        agrupar();
+    }
+
+    public void agrupar() {
+        ButtonGroup botones = new ButtonGroup();
+        botones.add(rbnmasculino);
+        botones.add(rbnfemenino);
     }
 
     /**
@@ -31,34 +46,36 @@ public class Crud_Organizador extends javax.swing.JPanel {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        txtcedula = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
+        txtapellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtcelular = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtdireccion = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jSpinner1 = new javax.swing.JSpinner();
+        spnedad = new javax.swing.JSpinner();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
+        txtcorreo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        txttelefono = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        jTextField9 = new javax.swing.JTextField();
+        txtcodigo = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField10 = new javax.swing.JTextField();
-        jTextField11 = new javax.swing.JTextField();
-        jTextField12 = new javax.swing.JTextField();
+        txtusuario = new javax.swing.JTextField();
+        txtcontra = new javax.swing.JTextField();
+        txtpresupuesto = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        rbnmasculino = new javax.swing.JRadioButton();
+        rbnfemenino = new javax.swing.JRadioButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel16 = new javax.swing.JLabel();
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -69,66 +86,75 @@ public class Crud_Organizador extends javax.swing.JPanel {
 
         jLabel2.setText("CEDULA:");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, -1, -1));
-        jPanel1.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 157, 140, -1));
+        jPanel1.add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 157, 140, -1));
 
         jLabel3.setText("NOMBRE:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
-        jPanel1.add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 204, 140, -1));
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 252, 140, -1));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 204, 140, -1));
+        jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 252, 140, -1));
 
         jLabel4.setText("APELLDO:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
 
         jLabel5.setText("CELULAR:");
         jPanel1.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, -1, -1));
-        jPanel1.add(jTextField4, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 140, -1));
+        jPanel1.add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 140, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lOGO1.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(608, 19, -1, -1));
 
         jLabel7.setText("DIRECCION:");
         jPanel1.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 400, -1, 20));
-        jPanel1.add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 400, 140, -1));
+        jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 400, 140, -1));
 
         jLabel8.setText("EDAD:");
         jPanel1.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 440, -1, 20));
-        jPanel1.add(jSpinner1, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 440, 40, -1));
+        jPanel1.add(spnedad, new org.netbeans.lib.awtextra.AbsoluteConstraints(211, 440, 40, -1));
 
         jLabel9.setText("GENERO:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 490, -1, -1));
 
         jLabel10.setText("CORREO:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 236, -1, -1));
-        jPanel1.add(jTextField7, new org.netbeans.lib.awtextra.AbsoluteConstraints(616, 233, 150, -1));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, -1, -1));
+        jPanel1.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 160, -1));
 
         jLabel11.setText("TELEFONO");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
-        jPanel1.add(jTextField8, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 140, -1));
+        jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 140, -1));
 
         jLabel12.setText("CODIGO ORGANIZADOR");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(507, 275, -1, 30));
-        jPanel1.add(jTextField9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 280, 122, -1));
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, -1, 30));
+        jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 160, -1));
 
         jLabel13.setText("USUARIO:");
-        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 334, -1, 20));
+        jPanel1.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 300, -1, 20));
 
         jLabel14.setText("CONTRASEÑA:");
-        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 384, -1, 20));
+        jPanel1.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 20));
 
-        jLabel15.setText("PRESUPUESTO:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 434, -1, 20));
-        jPanel1.add(jTextField10, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 330, 140, -1));
-        jPanel1.add(jTextField11, new org.netbeans.lib.awtextra.AbsoluteConstraints(631, 380, 140, -1));
-        jPanel1.add(jTextField12, new org.netbeans.lib.awtextra.AbsoluteConstraints(628, 430, 150, -1));
+        jLabel15.setText("FECHA DE NACIMIENTO");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 430, -1, 20));
+        jPanel1.add(txtusuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 160, -1));
+        jPanel1.add(txtcontra, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 160, -1));
+        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 390, 160, -1));
 
         jButton1.setText("CREAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 550, -1, -1));
 
-        jRadioButton1.setText("Masculino");
-        jPanel1.add(jRadioButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, -1, -1));
+        rbnmasculino.setText("Masculino");
+        jPanel1.add(rbnmasculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 490, -1, -1));
 
-        jRadioButton2.setText("Femenino");
-        jPanel1.add(jRadioButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
+        rbnfemenino.setText("Femenino");
+        jPanel1.add(rbnfemenino, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 490, -1, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 430, 160, -1));
+
+        jLabel16.setText("PRESUPUESTO:");
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 390, -1, 20));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -144,10 +170,53 @@ public class Crud_Organizador extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        crearOrganizador(base);
+        base.close();
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    public void crearOrganizador(ObjectContainer base) {
+
+        try {
+
+            double presupuesto = Double.valueOf(txtpresupuesto.getText().trim());
+
+            Date fecha = jDateChooser1.getDate();
+
+            SimpleDateFormat forma = new SimpleDateFormat("dd/MM/yyyy");
+
+            String seleccion = forma.format(fecha);
+
+            String sexo=" ";
+            if (rbnfemenino.isSelected()) {
+                sexo = "Femenino";
+
+            } else if (rbnmasculino.isSelected()) {
+                sexo = "Masculino";
+            }
+
+            Organizador miorganizador = new Organizador(txtcodigo.getText().trim(), null, null, presupuesto, txtcedula.getText().trim(), txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtcorreo.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(), seleccion, sexo);
+
+            
+            base.store(miorganizador);
+
+        } finally {
+            base.close();
+        }
+        
+        
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -155,6 +224,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -164,19 +234,19 @@ public class Crud_Organizador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JSpinner jSpinner1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
-    private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JRadioButton rbnfemenino;
+    private javax.swing.JRadioButton rbnmasculino;
+    private javax.swing.JSpinner spnedad;
+    private javax.swing.JTextField txtapellido;
+    private javax.swing.JTextField txtcedula;
+    private javax.swing.JTextField txtcelular;
+    private javax.swing.JTextField txtcodigo;
+    private javax.swing.JTextField txtcontra;
+    private javax.swing.JTextField txtcorreo;
+    private javax.swing.JTextField txtdireccion;
+    private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txtpresupuesto;
+    private javax.swing.JTextField txttelefono;
+    private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
 }
