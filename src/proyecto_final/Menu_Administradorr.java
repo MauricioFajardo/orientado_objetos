@@ -21,6 +21,8 @@ public class Menu_Administradorr extends javax.swing.JFrame {
     EliminarOrganizador orgaeliminar = new EliminarOrganizador();
     ReporteOrganizador orgareporte = new ReporteOrganizador();
 
+    Crud_ModOrganizador mod = new Crud_ModOrganizador();
+
     CardLayout vista;
 
     public Menu_Administradorr() {
@@ -102,6 +104,11 @@ public class Menu_Administradorr extends javax.swing.JFrame {
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/busqueda-de-datos.png"))); // NOI18N
         jButton4.setText("Modificar Organizador");
         jButton4.setBorder(null);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -268,6 +275,13 @@ public class Menu_Administradorr extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        pnldinamico.add(mod, "crud");
+        vista.show(pnldinamico, "crud");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

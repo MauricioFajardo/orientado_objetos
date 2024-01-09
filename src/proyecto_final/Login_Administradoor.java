@@ -26,17 +26,18 @@ public class Login_Administradoor extends javax.swing.JFrame {
         String auxPassword = txtPassword.getText();
         String usuario = "StevenC";
         String contraseña = "0106608342";
+
         if (auxUsuario.isEmpty() || auxPassword.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Campos vacios");
+            JOptionPane.showMessageDialog(null, "Campos vacíos");
         } else {
             if (auxUsuario.equals(usuario) && auxPassword.equals(contraseña)) {
-                //JOptionPane.showMessageDialog(null, "BIENVENIDO AL SISTEMA");
+                JOptionPane.showMessageDialog(null, "¡BIENVENIDO AL SISTEMA!");
 
                 this.dispose();
                 Menu_Administradorr v = new Menu_Administradorr();
                 v.setVisible(true);
             } else {
-                JOptionPane.showMessageDialog(null, " ERROR: Usuario / contraseña incorrecto");
+                JOptionPane.showMessageDialog(null, "ERROR: Usuario/contraseña incorrecto");
             }
         }
     }
