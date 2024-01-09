@@ -9,7 +9,7 @@ package Clases;
  *
  * @author Lenovo
  */
-public class Organizador {
+public class Organizador extends Persona {
     
     private String cod_organizador;
     private String usuario, contraseña;
