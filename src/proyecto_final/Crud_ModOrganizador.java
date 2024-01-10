@@ -10,6 +10,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.ButtonGroup;
@@ -26,6 +27,8 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
      */
     public Crud_ModOrganizador() {
         initComponents();
+        deshabilitarCampos();
+
         btncrear.setEnabled(false);
 
         agrupar();
@@ -89,11 +92,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         lblgenero = new javax.swing.JLabel();
         lblcedula = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
-        jPanel2 = new javax.swing.JPanel();
-        jPanel3 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-
-        setBackground(new java.awt.Color(0, 153, 153));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -111,7 +109,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 txtcedulaKeyReleased(evt);
             }
         });
-        jPanel1.add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 157, 160, -1));
+        jPanel1.add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 157, 140, -1));
 
         jLabel3.setText("NOMBRE:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 210, -1, -1));
@@ -121,14 +119,14 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 txtnombreKeyReleased(evt);
             }
         });
-        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 204, 160, -1));
+        jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 204, 140, -1));
 
         txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtapellidoKeyReleased(evt);
             }
         });
-        jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 252, 160, -1));
+        jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 252, 140, -1));
 
         jLabel4.setText("APELLDO:");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 260, -1, -1));
@@ -141,7 +139,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 txtcelularKeyReleased(evt);
             }
         });
-        jPanel1.add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 160, -1));
+        jPanel1.add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 140, -1));
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lOGO1.png"))); // NOI18N
         jPanel1.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 20, -1, -1));
@@ -154,20 +152,20 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 txtdireccionKeyReleased(evt);
             }
         });
-        jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 400, 160, -1));
+        jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 400, 140, -1));
 
         jLabel9.setText("GENERO:");
         jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
 
         jLabel10.setText("CORREO:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 210, -1, 30));
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 204, -1, 30));
 
         txtcorreo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtcorreoKeyReleased(evt);
             }
         });
-        jPanel1.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 210, 160, -1));
+        jPanel1.add(txtcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 210, 160, -1));
 
         jLabel11.setText("TELEFONO");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
@@ -177,21 +175,21 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 txttelefonoKeyReleased(evt);
             }
         });
-        jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 160, -1));
+        jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 140, -1));
 
-        jLabel12.setText("CODIGO ORGANIZADOR:");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, -1, 30));
-        jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 260, 160, -1));
+        jLabel12.setText("CODIGO ORGANIZADOR");
+        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 30));
+        jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 160, -1));
 
-        jLabel15.setText("FECHA DE NACIMIENTO:");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, -1, 20));
+        jLabel15.setText("FECHA DE NACIMIENTO");
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 20));
 
         txtpresupuesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtpresupuestoKeyReleased(evt);
             }
         });
-        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 310, 160, -1));
+        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 160, -1));
 
         btncrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/disco-flexible.png"))); // NOI18N
         btncrear.setText("GUARDAR");
@@ -200,7 +198,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 btncrearActionPerformed(evt);
             }
         });
-        jPanel1.add(btncrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 510, -1, -1));
+        jPanel1.add(btncrear, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 540, -1, -1));
 
         rbnmasculino.setText("Masculino");
         rbnmasculino.addChangeListener(new javax.swing.event.ChangeListener() {
@@ -223,104 +221,63 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 jDateChooser1PropertyChange(evt);
             }
         });
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 370, 160, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 160, -1));
 
         jLabel16.setText("PRESUPUESTO:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 320, -1, 20));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, 20));
 
         lblcorreo.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, 160, 20));
+        jPanel1.add(lblcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 140, -1));
 
         lblnombre.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 230, 150, 20));
+        jPanel1.add(lblnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, 140, -1));
 
         lblapellido.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 280, 150, 20));
+        jPanel1.add(lblapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 280, 140, -1));
 
         lblcelular.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 150, 20));
+        jPanel1.add(lblcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 330, 140, -1));
 
         lbltelefono.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lbltelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 380, 160, 20));
+        jPanel1.add(lbltelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 380, 140, -1));
 
         lbldireccion.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 430, 150, 20));
+        jPanel1.add(lbldireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 420, 140, -1));
 
         jLabel20.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 290, 160, 20));
+        jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 270, 140, -1));
 
         lblpresupuesto.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 340, 150, 20));
+        jPanel1.add(lblpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 320, 140, -1));
 
         lblfecha.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 400, 150, 20));
+        jPanel1.add(lblfecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 140, -1));
 
         lblgenero.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblgenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 150, 20));
+        jPanel1.add(lblgenero, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 500, 140, -1));
 
         lblcedula.setForeground(new java.awt.Color(255, 0, 0));
-        jPanel1.add(lblcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, 160, 20));
+        jPanel1.add(lblcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 140, -1));
 
-        jButton1.setBackground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.png"))); // NOI18N
-        jButton1.setBorder(null);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 150, -1, -1));
-
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-
-        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 870, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 552, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-
-        jPanel2.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 14, 890, 550));
-
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 930, 590));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 940, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 580, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 11, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -329,11 +286,14 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
 
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
-        crearOrganizador(base);
+        ActualizarOrganizador(base);
         base.close();
 
     }//GEN-LAST:event_btncrearActionPerformed
 
+    public void inahabilitarDatos() {
+
+    }
     private void txtcedulaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyReleased
         Validar();
     }//GEN-LAST:event_txtcedulaKeyReleased
@@ -398,9 +358,10 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         // TODO add your handling code here:
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
-        String nombre = " ", apellido = " ", celular = " ", telefono = " ", direccion = " ", correo = " ", codigo = " ", presupuesto = " ";
-        Date fecha = null;
-        int ed = 0;
+        String nombre = " ", apellido = " ", celular = " ", telefono = " ", direccion = " ", correo = " ", codigo = " ";
+        double presupuesto = 0.0;
+        String fecha = null;
+
         String genero = "";  // Asegúrate de tener declarada la variable "genero"
         String cod = "";     // Asegúrate de tener declarada la variable "cod"
 
@@ -409,29 +370,73 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         query.descend("cedula").constrain(txtcedula.getText().trim());
         ObjectSet<Organizador> result = query.execute();
 
-//        if (!result.isEmpty()) {
-//            habiltarDatos();
-//            for (Organizador organizador : result) {  // Cambiado a la clase correcta
-//                nombre = organizador.getNombre();
-//                apellido = organizador.getApellido();
-//                celular = organizador.getCelular();
-//                telefono = organizador.getTelefono();
-//                direccion = organizador.getDireccion();
-//                
-//                correo = organizador.getCorreo();
-//                cod = organizador.getCod_organizador();
-//                presupuesto = organizador.getPresupuesto();
-//                genero = organizador.getGenero();
-//                fecha = organizador.getFecchaNaci();  // Asegúrate de tener el método correcto
-//                ed = organizador.getEdad();  // Asegúrate de tener el método correcto
-//            }
-//
-//            // Resto del código...
-//        } else {
-//            JOptionPane.showMessageDialog(null, "No se encontró ningún organizador con la cédula ingresada");
-//        }
+        if (!result.isEmpty()) {
+            // habiltarDatos();
+            for (Organizador organizador : result) {  // Cambiado a la clase correcta
+                nombre = organizador.getNombre();
+                apellido = organizador.getApellido();
+                celular = organizador.getCelular();
+                telefono = organizador.getTelefono();
+                direccion = organizador.getDireccion();
 
+                correo = organizador.getCorreo();
+                cod = organizador.getCod_organizador();
+                presupuesto = organizador.getPresupuesto();
+                genero = organizador.getGenero();
+                fecha = organizador.getFecchaNaci();  // Asegúrate de tener el método correcto
+
+            }
+
+            txtnombre.setText(nombre.trim());
+            txttelefono.setText(telefono.trim());
+            txtapellido.setText(apellido.trim());
+            txtcorreo.setText(correo.trim());
+            txtdireccion.setText(direccion.trim());
+            txtcelular.setText(celular.trim());
+
+            if (genero.equalsIgnoreCase("Masculino")) {
+                rbnmasculino.setSelected(true);
+            } else if (genero.equalsIgnoreCase("Femenino")) {
+                rbnfemenino.setSelected(true);
+            }
+            String presupuesto1 = String.valueOf(presupuesto);
+            txtpresupuesto.setText(presupuesto1);
+
+            try {
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                Date nacimiento = format.parse(fecha);
+                jDateChooser1.setDate(nacimiento);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            if (genero.equalsIgnoreCase("Masculino")) {
+                rbnmasculino.setSelected(true);
+            } else if (genero.equalsIgnoreCase("Femenino")) {
+                rbnfemenino.setSelected(true);
+
+            }
+
+            int resultado = JOptionPane.showConfirmDialog(null, "Desea modificar los datos", "confirmacion", JOptionPane.YES_NO_OPTION);
+
+            
+            if (resultado == JOptionPane.YES_OPTION) {
+                habilitarCampos();
+            }else if (resultado == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Modificacion cancelada");
+                deshabilitarCampos();
+                btncrear.setEnabled(false);
+
+            }
+
+            
+            // Resto del código...
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró ningún organizador con la cédula ingresada");
+        }
         base.close();
+
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -444,67 +449,68 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         }
     }
 
-    public void crearOrganizador(ObjectContainer base) {
+    public void ActualizarOrganizador(ObjectContainer base) {
 
-        try {
+        double presupuesto = 0.0;
+        String valorIngresado = txtpresupuesto.getText().trim();
 
-            double presupuesto = 0.0;
-            String valorIngresado = txtpresupuesto.getText().trim();
-
-            if (esNumeroDecimal(valorIngresado)) {
-                presupuesto = Double.valueOf(valorIngresado);
-            } else {
-                System.out.println("Error: El valor ingresado no es un número decimal.");
-            }
-            String seleccion = " ";
-
-            Date fecha = jDateChooser1.getDate();
-
-            if (fecha != null) {
-                seleccion = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
-            } else {
-                System.out.println("Fecha no seleccionada");
-            }
-
-            String sexo = " ";
-            if (rbnfemenino.isSelected()) {
-                sexo = "Femenino";
-
-            } else if (rbnmasculino.isSelected()) {
-                sexo = "Masculino";
-            }
-
-            ObjectSet<Organizador> resul = base.queryByExample(new Organizador(null, null, null, 0.0, txtcedula.getText().trim(), null, null, null, null, null, null, null, null));
-
-            if (!resul.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ya existe un organizador con la cédula ingresada.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            Validar();
-
-            Organizador miorganizador = new Organizador(txtcodigo.getText().trim(), null, null, presupuesto, txtcedula.getText().trim(), txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtcorreo.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(), seleccion, sexo);
-
-            base.store(miorganizador);
-
-            JOptionPane.showMessageDialog(null, " Se guardo los datos de forma correcta");
-
-            // spnedad.setValue(0);
-            txtcorreo.setText("");
-            jDateChooser1.setDate(null);
-            txtcedula.setText("");
-            txtnombre.setText("");
-            txtapellido.setText("");
-            txtcelular.setText("");
-            txttelefono.setText("");
-            txtdireccion.setText("");
-            txtpresupuesto.setText("");
-            rbnfemenino.setSelected(false);
-            rbnmasculino.setSelected(false);
-
-        } finally {
-            base.close();
+        if (esNumeroDecimal(valorIngresado)) {
+            presupuesto = Double.valueOf(valorIngresado);
+        } else {
+            System.out.println("Error: El valor ingresado no es un número decimal.");
         }
+        String seleccion = " ";
+
+        Date fecha = jDateChooser1.getDate();
+
+        if (fecha != null) {
+            seleccion = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+        } else {
+            System.out.println("Fecha no seleccionada");
+        }
+
+        String sexo = " ";
+        if (rbnfemenino.isSelected()) {
+            sexo = "Femenino";
+
+        } else if (rbnmasculino.isSelected()) {
+            sexo = "Masculino";
+        }
+
+        Organizador miorganizador = new Organizador(null, null, null, 0.0, txtcedula.getText().trim(), null, null, null, null, null, null, null, null);
+
+        ObjectSet res = base.get(miorganizador);
+        Organizador organizador1 = (Organizador) res.next();
+        organizador1.setNombre(txtnombre.getText().trim());
+        organizador1.setApellido(txtapellido.getText().trim());
+        organizador1.setCorreo(txtcorreo.getText().trim());
+        organizador1.setGenero(sexo.trim());
+        organizador1.setTelefono(txttelefono.getText().trim());
+
+        organizador1.setFecchaNaci(seleccion);
+
+        organizador1.setCelular(txtcelular.getText().trim());
+
+        organizador1.setDireccion(txtdireccion.getText().trim());
+        organizador1.setPresupuesto(presupuesto);
+
+        organizador1.setGenero(sexo.trim());
+
+        base.set(organizador1);
+        JOptionPane.showMessageDialog(null, "Modificacion exitosa");
+
+        // spnedad.setValue(0);
+        txtcorreo.setText("");
+        jDateChooser1.setDate(null);
+        txtcedula.setText("");
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txtcelular.setText("");
+        txttelefono.setText("");
+        txtdireccion.setText("");
+        txtpresupuesto.setText("");
+        rbnfemenino.setSelected(false);
+        rbnmasculino.setSelected(false);
 
     }
 
@@ -583,6 +589,34 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         }
     }
 
+    public void deshabilitarCampos() {
+
+        txtnombre.setEnabled(false);
+        txtapellido.setEnabled(false);
+        txtcelular.setEnabled(false);
+        txttelefono.setEnabled(false);
+        txtdireccion.setEnabled(false);
+        txtcorreo.setEnabled(false);
+        txtpresupuesto.setEnabled(false);
+        rbnfemenino.setEnabled(false);
+        rbnmasculino.setEnabled(false);
+        jDateChooser1.setEnabled(false);
+    }
+
+    public void habilitarCampos() {
+
+        txtnombre.setEnabled(true);
+        txtapellido.setEnabled(true);
+        txtcelular.setEnabled(true);
+        txttelefono.setEnabled(true);
+        txtdireccion.setEnabled(true);
+        txtcorreo.setEnabled(true);
+        txtpresupuesto.setEnabled(true);
+        rbnfemenino.setEnabled(true);
+        rbnmasculino.setEnabled(true);
+        jDateChooser1.setEnabled(true);
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btncrear;
     private javax.swing.ButtonGroup buttonGroup1;
@@ -603,9 +637,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblapellido;
     private javax.swing.JLabel lblcedula;
     private javax.swing.JLabel lblcelular;

@@ -24,3 +24,5 @@ hs_err_pid*
 replay_pid*
 /build/
 /dist/
+/Trabajo_db4o/nbproject/private/
+/Trabajo_db4o/build/
