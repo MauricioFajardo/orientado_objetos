@@ -111,8 +111,8 @@ public class Crud_Patrocinado extends javax.swing.JPanel {
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, -1, -1));
 
         jLabel10.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
-        jLabel10.setText("Contacto:");
-        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 250, -1, -1));
+        jLabel10.setText("Redes Sociales:");
+        jPanel1.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, -1, -1));
 
         jLabel12.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel12.setText("Cedula Persona:");
@@ -161,7 +161,7 @@ public class Crud_Patrocinado extends javax.swing.JPanel {
         jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/disco-flexible.png"))); // NOI18N
         jButton1.setText("GUARDAR");
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 380, 120, 40));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 390, 120, 40));
 
         jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar (1).png"))); // NOI18N
@@ -171,12 +171,12 @@ public class Crud_Patrocinado extends javax.swing.JPanel {
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 380, 130, 40));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 390, 130, 40));
 
         jButton3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-eliminar (1).png"))); // NOI18N
         jButton3.setText("ELIMINAR");
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 380, 130, 40));
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 390, 130, 40));
 
         jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.png"))); // NOI18N
         jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 50, -1, -1));
@@ -189,12 +189,12 @@ public class Crud_Patrocinado extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Cédula ", "Nombre", "Apellido", "Teléfono", "Email", "Dirección", "Celular", "Género", "Cédula Persona ", "Código ", "Descripción", "Contacto", "Fecha de Nacimiento"
+                "Cédula ", "Nombre", "Apellido", "Teléfono", "Email", "Dirección", "Celular", "Género", "Cédula Persona ", "Código ", "Descripción", "Redes Sociales", "Fecha de Nacimiento"
             }
         ));
         jScrollPane2.setViewportView(jTable1);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 870, 180));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 450, 870, 170));
 
         jLabel9.setFont(new java.awt.Font("Berlin Sans FB Demi", 1, 14)); // NOI18N
         jLabel9.setText("REGISTRO DEL PATROCINADOR");
@@ -205,7 +205,7 @@ public class Crud_Patrocinado extends javax.swing.JPanel {
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/actualizar.png"))); // NOI18N
         jButton4.setText("REPORTE");
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 380, -1, 40));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 390, -1, 40));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
