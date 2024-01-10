@@ -18,6 +18,7 @@ public class MenuOrganizador extends javax.swing.JFrame {
     Cruds_Eventos orgaeventos = new Cruds_Eventos();
     Encuestaa_Organizor orgaencuesta = new Encuestaa_Organizor();
     AceptarSolicitud orgasolicitud = new AceptarSolicitud();
+    Crud_Patrocinado orgapatrocinador = new Crud_Patrocinado();
 
     CardLayout vista;
 
@@ -79,6 +80,11 @@ public class MenuOrganizador extends javax.swing.JFrame {
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/secretario.png"))); // NOI18N
         jButton2.setText("Patrocinador");
         jButton2.setBorder(null);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -265,6 +271,14 @@ public class MenuOrganizador extends javax.swing.JFrame {
         SwingUtilities.updateComponentTreeUI(this);
         this.repaint();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        pnldinamico.add(orgapatrocinador, "crud");
+        vista.show(pnldinamico, "crud");
+        SwingUtilities.updateComponentTreeUI(this);
+        this.repaint();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
