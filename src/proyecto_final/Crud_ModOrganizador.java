@@ -72,7 +72,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         jLabel11 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtcodigo = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         txtpresupuesto = new javax.swing.JTextField();
         btncrear = new javax.swing.JButton();
@@ -179,7 +178,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
 
         jLabel12.setText("CODIGO ORGANIZADOR");
         jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 30));
-        jPanel1.add(txtcodigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 160, -1));
 
         jLabel15.setText("FECHA DE NACIMIENTO");
         jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 20));
@@ -360,7 +358,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
 
         String nombre = " ", apellido = " ", celular = " ", telefono = " ", direccion = " ", correo = " ", codigo = " ";
         double presupuesto = 0.0;
-        String fecha = null;
+        Date fecha;
 
         String genero = "";  // Asegúrate de tener declarada la variable "genero"
         String cod = "";     // Asegúrate de tener declarada la variable "cod"
@@ -402,13 +400,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
             String presupuesto1 = String.valueOf(presupuesto);
             txtpresupuesto.setText(presupuesto1);
 
-            try {
-                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                Date nacimiento = format.parse(fecha);
-                jDateChooser1.setDate(nacimiento);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
+           
 
             if (genero.equalsIgnoreCase("Masculino")) {
                 rbnmasculino.setSelected(true);
@@ -487,7 +479,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         organizador1.setGenero(sexo.trim());
         organizador1.setTelefono(txttelefono.getText().trim());
 
-        organizador1.setFecchaNaci(seleccion);
+        organizador1.setFecchaNaci(jDateChooser1.getDate());
 
         organizador1.setCelular(txtcelular.getText().trim());
 
@@ -652,7 +644,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcedula;
     private javax.swing.JTextField txtcelular;
-    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtnombre;

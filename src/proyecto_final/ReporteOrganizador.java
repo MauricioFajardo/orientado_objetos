@@ -10,6 +10,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
+import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -17,6 +18,10 @@ import javax.swing.table.DefaultTableModel;
  * @author eliza
  */
 public class ReporteOrganizador extends javax.swing.JPanel {
+    
+    public static ArrayList<Organizador> listaagentes = new ArrayList<>();
+
+    public static ArrayList<Organizador> codigoseliminados = new ArrayList<>();
 
     /**
      * Creates new form ReporteOrganizador
@@ -103,7 +108,6 @@ public class ReporteOrganizador extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnActualizatDatos.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         btnActualizatDatos.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/lista-de-verificacion.png"))); // NOI18N
         btnActualizatDatos.setText("Actualizar Reporte ");
         btnActualizatDatos.addActionListener(new java.awt.event.ActionListener() {
@@ -156,7 +160,10 @@ public class ReporteOrganizador extends javax.swing.JPanel {
 
     private void btnActualizatDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizatDatosActionPerformed
         // TODO add your handling code here:
-        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+        
+        
+        actualizarDatos();
+       /* ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
         ObjectSet<Organizador> result = base.queryByExample(new Organizador());
         String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", "Presupuesto", "Fecha de Nacimiento"};
@@ -182,9 +189,59 @@ public class ReporteOrganizador extends javax.swing.JPanel {
 
         DefaultTableModel model = new DefaultTableModel(data, columnNames);
         jTableDatos.setModel(model);
-        base.close();
+        base.close();*/
     }//GEN-LAST:event_btnActualizatDatosActionPerformed
 
+    
+    public void actualizarDatos() {
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        AsignarRegistrosArray(base);
+
+        // Limpia los datos de la tabla y actualiza los datos en la tabla con los nuevos registros del ArrayList
+        jTableDatos.setModel(new DefaultTableModel());
+
+        String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", "Presupuesto", "Fecha de Nacimiento"};
+
+        Object[][] data = new Object[listaagentes.size()][11];
+
+        for (int i = 0; i < listaagentes.size(); i++) {
+            data[i][0] = listaagentes.get(i).getCod_organizador();
+            data[i][1] = listaagentes.get(i).getCedula();
+            data[i][2] = listaagentes.get(i).getNombre();
+            data[i][3] = listaagentes.get(i).getApellido();
+            data[i][4] = listaagentes.get(i).getCelular();
+            data[i][5] = listaagentes.get(i).getTelefono();
+            data[i][6] = listaagentes.get(i).getDireccion();
+            data[i][7] = listaagentes.get(i).getGenero();
+            data[i][8] = listaagentes.get(i).getCorreo();
+            data[i][9] = listaagentes.get(i).getPresupuesto();
+            data[i][10] = listaagentes.get(i).getFecchaNaci();
+        }
+
+        this.validate();
+        jTableDatos.repaint();
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        jTableDatos.setModel(model);
+
+        base.close();
+    }
+
+    public void AsignarRegistrosArray(ObjectContainer base) {
+
+        Query query = base.query();
+        query.constrain(Organizador.class);
+        ObjectSet<Organizador> agentes = query.execute();
+
+        // Elimina todos los elementos del ArrayList existente
+        listaagentes.clear();
+
+        // Agrega los nuevos registros al ArrayList
+        for (Organizador agente : agentes) {
+            listaagentes.add(agente);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnActualizatDatos;

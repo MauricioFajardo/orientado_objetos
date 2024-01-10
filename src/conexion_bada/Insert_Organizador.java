@@ -101,7 +101,7 @@ public class Insert_Organizador extends Organizador {
                 mi_admin.setDireccion(rs.getString("per_direccion"));
 
                 mi_admin.setCelular(rs.getString("per_celular"));
-                mi_admin.setFecchaNaci(rs.getString("per_fecha_nacimiento"));
+            //    mi_admin.setFecchaNaci(rs.getString("per_fecha_nacimiento"));
                 mi_admin.setGenero(rs.getString("per_genero"));
 
                 admin.add(mi_admin);
