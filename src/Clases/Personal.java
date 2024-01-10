@@ -7,26 +7,25 @@ import java.util.Date;
 public class Personal extends Persona{
     private String codigo_perso;//llave primraria
     private String Tipo_personal, Departamento_p, contanto_p, Calificacion_p;
-  //  private Date Fecha_contrato;
+    private Date Fecha_contrato_inicio;
+    private Date Fecha_contrato_fin;
     private String cedula_perso;//llave secundaria de persona
 
     public Personal() {
         super();
     }
 
-    public Personal(String codigo_perso, String Tipo_personal, String Departamento_p, String contanto_p, String Calificacion_p, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+    public Personal(String codigo_perso, String Tipo_personal, String Departamento_p, String contanto_p, String Calificacion_p, Date Fecha_contrato_inicio, Date Fecha_contrato_fin, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, String genero) {
         super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.codigo_perso = codigo_perso;
         this.Tipo_personal = Tipo_personal;
         this.Departamento_p = Departamento_p;
         this.contanto_p = contanto_p;
         this.Calificacion_p = Calificacion_p;
+        this.Fecha_contrato_inicio = Fecha_contrato_inicio;
+        this.Fecha_contrato_fin = Fecha_contrato_fin;
         this.cedula_perso = cedula_perso;
     }
-
-    
-
-    
 
     public String getCodigo_perso() {
         return codigo_perso;
@@ -74,6 +73,22 @@ public class Personal extends Persona{
 
     public void setCedula_perso(String cedula_perso) {
         this.cedula_perso = cedula_perso;
+    }
+
+    public Date getFecha_contrato_inicio() {
+        return Fecha_contrato_inicio;
+    }
+
+    public void setFecha_contrato_inicio(Date Fecha_contrato_inicio) {
+        this.Fecha_contrato_inicio = Fecha_contrato_inicio;
+    }
+
+    public Date getFecha_contrato_fin() {
+        return Fecha_contrato_fin;
+    }
+
+    public void setFecha_contrato_fin(Date Fecha_contrato_fin) {
+        this.Fecha_contrato_fin = Fecha_contrato_fin;
     }
 
     

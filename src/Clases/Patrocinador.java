@@ -12,7 +12,7 @@ public class Patrocinador extends Persona{
         super();
     }
 
-    public Patrocinador(String codigo_patri, String Descripcion_p, String Contacto_p, String Redes_Sociales, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+    public Patrocinador(String codigo_patri, String Descripcion_p, String Contacto_p, String Redes_Sociales, String cedula_perso, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, String genero) {
         super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.codigo_patri = codigo_patri;
         this.Descripcion_p = Descripcion_p;
@@ -20,10 +20,6 @@ public class Patrocinador extends Persona{
         this.Redes_Sociales = Redes_Sociales;
         this.cedula_perso = cedula_perso;
     }
-
-    
-
-    
 
     public String getCodigo_patri() {
         return codigo_patri;

@@ -5,6 +5,8 @@
  */
 package Clases;
 
+import java.util.Date;
+
 /**
  *
  * @author Lenovo
@@ -20,15 +22,16 @@ public class Organizador extends Persona {
         super();
     }
 
-
-    public Organizador(String cod_organizador, String usuario, String contraseña, double Presupuesto, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, String fecchaNaci, String genero) {
+    public Organizador(String cod_organizador, String usuario, String contraseña, double Presupuesto, String cedula, String nombre, String apellido, String telefono, String correo, String direccion, String celular, Date fecchaNaci, String genero) {
         super(cedula, nombre, apellido, telefono, correo, direccion, celular, fecchaNaci, genero);
         this.cod_organizador = cod_organizador;
         this.usuario = usuario;
         this.contraseña = contraseña;
         this.Presupuesto = Presupuesto;
-    
     }
+
+
+    
 
     
 
