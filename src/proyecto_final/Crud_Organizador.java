@@ -20,10 +20,13 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class Crud_Organizador extends javax.swing.JPanel {
-
     public static ArrayList<Organizador> listaagentes = new ArrayList<>();
 
     public static ArrayList<Organizador> codigoseliminados = new ArrayList<>();
+
+
+    
+
     public Crud_Organizador() {
         initComponents();
         btncrear.setEnabled(false);
@@ -88,7 +91,6 @@ public class Crud_Organizador extends javax.swing.JPanel {
         lbldireccion = new javax.swing.JLabel();
         lblcedula = new javax.swing.JLabel();
         lblcod = new javax.swing.JLabel();
-        lblcod1 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -254,12 +256,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
 
         lblcedula.setForeground(new java.awt.Color(255, 0, 0));
         jPanel2.add(lblcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 150, 20));
-
-        lblcod.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPanel2.add(lblcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        lblcod1.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jPanel2.add(lblcod1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jPanel2.add(lblcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 140, 30));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 880, 540));
 
@@ -355,21 +352,18 @@ public class Crud_Organizador extends javax.swing.JPanel {
     }
 
     public void crearOrganizador(ObjectContainer base) {
-        
-        
+
         try {
-            int aux = 1 + listaagentes.size();
+            int aux = 1 + ReporteOrganizador.listaagentes.size();
             String auxn = String.valueOf(aux);
             String cod = "00" + auxn;
 
-            while (codigoseliminados.contains(cod)) {
+            while (ReporteOrganizador.codigoseliminados.contains(cod)) {
                 aux++;
                 auxn = String.valueOf(aux);
                 cod = "00" + auxn;
             }
             lblcod.setText(cod);
-
-        
 
             double presupuesto = 0.0;
             String valorIngresado = txtpresupuesto.getText().trim();
@@ -378,15 +372,6 @@ public class Crud_Organizador extends javax.swing.JPanel {
                 presupuesto = Double.valueOf(valorIngresado);
             } else {
                 System.out.println("Error: El valor ingresado no es un número decimal.");
-            }
-            String seleccion = " ";
-
-            Date fecha = jDateChooser1.getDate();
-
-            if (fecha != null) {
-                seleccion = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
-            } else {
-                System.out.println("Fecha no seleccionada");
             }
 
             String sexo = " ";
@@ -411,23 +396,23 @@ public class Crud_Organizador extends javax.swing.JPanel {
             base.store(miorganizador);
 
             JOptionPane.showMessageDialog(null, " Se guardo los datos de forma correcta");
-
-            // spnedad.setValue(0);
-            txtcorreo.setText("");
-            jDateChooser1.setDate(null);
-            txtcedula.setText("");
-            txtnombre.setText("");
-            txtapellido.setText("");
-            txtcelular.setText("");
-            txttelefono.setText("");
-            txtdireccion.setText("");
-            txtpresupuesto.setText("");
-            rbnfemenino.setSelected(false);
-            rbnmasculino.setSelected(false);
-
         } finally {
             base.close();
         }
+
+        // spnedad.setValue(0);
+        txtcorreo.setText("".trim());
+        jDateChooser1.setDate(null);
+        txtcedula.setText("".trim());
+        txtnombre.setText("".trim());
+        txtapellido.setText("".trim());
+        txtcelular.setText("".trim());
+        txttelefono.setText("".trim());
+        lblcod.setText(" ".trim());
+        txtdireccion.setText("".trim());
+        txtpresupuesto.setText("".trim());
+        rbnfemenino.setSelected(false);
+        rbnmasculino.setSelected(false);
 
     }
 
@@ -529,7 +514,6 @@ public class Crud_Organizador extends javax.swing.JPanel {
     private javax.swing.JLabel lblcedula;
     private javax.swing.JLabel lblcelular;
     private javax.swing.JLabel lblcod;
-    private javax.swing.JLabel lblcod1;
     private javax.swing.JLabel lblcorreo;
     private javax.swing.JLabel lbldireccion;
     private javax.swing.JLabel lblfecha;

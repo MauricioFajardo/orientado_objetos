@@ -28,6 +28,7 @@ public class ReporteOrganizador extends javax.swing.JPanel {
      */
     public ReporteOrganizador() {
         initComponents();
+         actualizarDatos();
     }
 
     /**
