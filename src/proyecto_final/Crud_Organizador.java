@@ -9,6 +9,7 @@ import Clases.Organizador;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -20,12 +21,10 @@ import javax.swing.JOptionPane;
  * @author HP
  */
 public class Crud_Organizador extends javax.swing.JPanel {
+
     public static ArrayList<Organizador> listaagentes = new ArrayList<>();
 
     public static ArrayList<Organizador> codigoseliminados = new ArrayList<>();
-
-
-    
 
     public Crud_Organizador() {
         initComponents();
@@ -354,16 +353,34 @@ public class Crud_Organizador extends javax.swing.JPanel {
     public void crearOrganizador(ObjectContainer base) {
 
         try {
+
+            String seleccion = " ";
+            Date nacimiento = null;
+
             int aux = 1 + ReporteOrganizador.listaagentes.size();
             String auxn = String.valueOf(aux);
             String cod = "00" + auxn;
 
-            while (ReporteOrganizador.codigoseliminados.contains(cod)) {
-                aux++;
-                auxn = String.valueOf(aux);
-                cod = "00" + auxn;
-            }
             lblcod.setText(cod);
+
+            // establecer formato
+            Date fecha = jDateChooser1.getDate();
+
+            if (fecha != null) {
+                seleccion = new SimpleDateFormat("dd/MM/yyyy").format(fecha);
+            } else {
+                System.out.println("Fecha no seleccionada");
+            }
+
+            // convertir el String seleccionado a Date
+            SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+            try {
+                nacimiento = format.parse(seleccion);
+                System.out.println("Date: " + nacimiento);
+
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
 
             double presupuesto = 0.0;
             String valorIngresado = txtpresupuesto.getText().trim();
@@ -391,7 +408,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
 
             Validar();
 
-            Organizador miorganizador = new Organizador(lblcod.getText().trim(), null, null, presupuesto, txtcedula.getText().trim(), txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtcorreo.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(), jDateChooser1.getDate(), sexo);
+            Organizador miorganizador = new Organizador(lblcod.getText().trim(), null, null, presupuesto, txtcedula.getText().trim(), txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtcorreo.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(), nacimiento, sexo);
 
             base.store(miorganizador);
 
