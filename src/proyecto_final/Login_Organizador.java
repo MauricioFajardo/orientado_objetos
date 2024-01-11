@@ -115,7 +115,7 @@ public class Login_Organizador extends javax.swing.JFrame {
                 btnIniciarSecioActionPerformed(evt);
             }
         });
-        jPanel2.add(btnIniciarSecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 420, 150, -1));
+        jPanel2.add(btnIniciarSecio, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 170, -1));
 
         jLabel6.setText("Forgot your password? ");
         jPanel2.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 360, -1, -1));
