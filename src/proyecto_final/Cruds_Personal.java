@@ -5,17 +5,36 @@
  */
 package proyecto_final;
 
+import Clases.Personal;
+import com.db4o.Db4o;
+import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
+import com.db4o.query.Query;
+import java.util.Date;
+import javax.swing.ButtonGroup;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author eliza
  */
 public class Cruds_Personal extends javax.swing.JPanel {
+    
+     String sexo;
 
     /**
      * Creates new form Cruds_Personal
      */
     public Cruds_Personal() {
         initComponents();
+    }
+    
+    public void Agrupar() {
+        ButtonGroup botones = new ButtonGroup();
+        botones.add(rbfemeninoPro);
+        botones.add(rbmasculinoPro);
+
     }
 
     /**
@@ -27,6 +46,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        botones = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -37,21 +57,21 @@ public class Cruds_Personal extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jRadioButton1 = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
+        fechanac = new com.toedter.calendar.JDateChooser();
+        txtemail = new javax.swing.JTextField();
+        txttelefono = new javax.swing.JTextField();
+        txtapellido = new javax.swing.JTextField();
+        txtnombre = new javax.swing.JTextField();
+        CedulaPersonal = new javax.swing.JTextField();
+        txtdireccion = new javax.swing.JTextField();
+        rbmasculinoPro = new javax.swing.JRadioButton();
+        rbfemeninoPro = new javax.swing.JRadioButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField9 = new javax.swing.JTextField();
+        txtcodigopersonal = new javax.swing.JTextField();
+        txtcelular = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
@@ -60,9 +80,9 @@ public class Cruds_Personal extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox2 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jTextField10 = new javax.swing.JTextField();
+        jComboBoxevento = new javax.swing.JComboBox<>();
+        jComboBoxdepartamento = new javax.swing.JComboBox<>();
+        txttipopersonal = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
@@ -72,61 +92,55 @@ public class Cruds_Personal extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/humano.png"))); // NOI18N
         jLabel1.setText("PERSONAL");
 
-        jLabel2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel2.setText("Cédula: ");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel3.setText("Nombre: ");
 
-        jLabel5.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel5.setText("Apellido:");
 
-        jLabel6.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel6.setText("Teléfono: ");
 
-        jLabel7.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel7.setText("Email: ");
 
-        jLabel8.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel8.setText("Fecha de Nacimiento: ");
 
-        jLabel9.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel9.setText("Dirección: ");
 
-        jLabel11.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel11.setText("Género: ");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        txtemail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                txtemailActionPerformed(evt);
             }
         });
 
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        txtapellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                txtapellidoActionPerformed(evt);
             }
         });
 
-        jRadioButton1.setText("Masculino");
+        txtdireccion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdireccionActionPerformed(evt);
+            }
+        });
 
-        jRadioButton2.setText("Femenino");
+        rbmasculinoPro.setText("Masculino");
 
-        jLabel12.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
+        rbfemeninoPro.setText("Femenino");
+
         jLabel12.setText("Código Personal:");
 
-        jLabel13.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel13.setText("Tipo de Personal: ");
 
-        jLabel14.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel14.setText("Id Departamento: ");
 
-        jLabel15.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel15.setText("Celular:");
 
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        txtcelular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                txtcelularActionPerformed(evt);
             }
         });
 
@@ -147,11 +161,14 @@ public class Cruds_Personal extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/disco-flexible.png"))); // NOI18N
         jButton1.setText("GUARDAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jButton2.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/editar (1).png"))); // NOI18N
         jButton2.setText("MODIFICAR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -160,24 +177,36 @@ public class Cruds_Personal extends javax.swing.JPanel {
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/boton-eliminar (1).png"))); // NOI18N
         jButton3.setText("ELIMINAR");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        jButton4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/curriculum.png"))); // NOI18N
         jButton4.setText("REPORTE");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton5.setBackground(new java.awt.Color(255, 255, 255));
         jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda (1)_1.png"))); // NOI18N
         jButton5.setBorder(null);
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
-        jLabel4.setFont(new java.awt.Font("Dialog", 1, 12)); // NOI18N
         jLabel4.setText("Código Evento: ");
 
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxevento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBoxdepartamento.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jButton6.setText("Ver");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -215,17 +244,17 @@ public class Cruds_Personal extends javax.swing.JPanel {
                                 .addGap(75, 75, 75)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jRadioButton1)
+                                        .addComponent(rbmasculinoPro)
                                         .addGap(33, 33, 33)
-                                        .addComponent(jRadioButton2))
+                                        .addComponent(rbfemeninoPro))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                            .addComponent(jTextField2)
-                                            .addComponent(jTextField3)
-                                            .addComponent(jTextField4)
-                                            .addComponent(jTextField5)
-                                            .addComponent(jTextField6))
+                                            .addComponent(txtemail, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                            .addComponent(txttelefono)
+                                            .addComponent(txtapellido)
+                                            .addComponent(txtnombre)
+                                            .addComponent(CedulaPersonal)
+                                            .addComponent(txtdireccion))
                                         .addGap(18, 18, 18)
                                         .addComponent(jButton5)
                                         .addGap(31, 31, 31)
@@ -241,12 +270,12 @@ public class Cruds_Personal extends javax.swing.JPanel {
                                                     .addComponent(jLabel4))
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                    .addComponent(jTextField7)
-                                                    .addComponent(jTextField9)
-                                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jComboBox3, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jTextField10))
+                                                    .addComponent(fechanac, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                    .addComponent(txtcodigopersonal)
+                                                    .addComponent(txtcelular)
+                                                    .addComponent(jComboBoxevento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(jComboBoxdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                    .addComponent(txttipopersonal))
                                                 .addGap(43, 43, 43)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jButton7)
@@ -272,53 +301,53 @@ public class Cruds_Personal extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CedulaPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtcodigopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtnombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txttipopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtapellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel14)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBoxdepartamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton6))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel15)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtcelular, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
-                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtemail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
-                            .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtdireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(fechanac, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBoxevento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jButton7))))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11)
-                    .addComponent(jRadioButton1)
-                    .addComponent(jRadioButton2))
+                    .addComponent(rbmasculinoPro)
+                    .addComponent(rbfemeninoPro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -343,20 +372,23 @@ public class Cruds_Personal extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void txtapellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtapellidoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_txtapellidoActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void txtdireccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdireccionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_txtdireccionActionPerformed
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void txtcelularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtcelularActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_txtcelularActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+       // ActualizarDatos(base);
+        base.close();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -367,8 +399,256 @@ public class Cruds_Personal extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton7ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+         ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        String nombre = " ", apellido = " ", telefono = " ", email = " ", direccion = " ", genero = " ", codigopersoal = " ";
+        String tipopersonal = " ", departamento = " ", contacto = " ", codigoevento = " ";
+        Date fechanacimiento = null;
+
+        int ed = 0;
+        Query query = base.query();
+        query.constrain(Personal.class);
+        query.descend("cedula").constrain(CedulaPersonal.getText().trim());
+        ObjectSet<Personal> result = query.execute();
+
+        String[] columnNames = {"CODIGO DE LA CASA", "CODIGO DEL PROPIETARIO", "DESCRIPCION", "PROVINCIA", "CIUDAD", "BARRIO", "CALLE PRINCIPAL", "CAPACIDAD", "HABITACIONES", "NUMERO DE PISOS", "BAÑOS", "TIPO DE CASA", "DISPONIBILIDAD"};
+
+        Object[][] data = new Object[result.size()][13];
+
+        int i = 0;
+        for (Personal personal1 : result) {
+            data[i][0] = personal1.getCedula();
+            data[i][1] = personal1.getNombre();
+            data[i][2] = personal1.getApellido();
+            data[i][3] = personal1.getTelefono();
+            data[i][4] = personal1.getCorreo();
+            data[i][5] = personal1.getDireccion();
+            data[i][6] = personal1.getGenero();
+            data[i][7] = personal1.getCodigo_perso();
+            data[i][8] = personal1.getTipo_personal();
+            data[i][9] = personal1.getDepartamento_p();
+            data[i][10] = personal1.getCelular();
+            data[i][11] = personal1.getFecchaNaci();
+            data[i][12] = personal1.getCod_evento();
+
+            i++;
+        }
+
+        DefaultTableModel model = new DefaultTableModel(data, columnNames);
+        jTable1.setModel(model);
+
+        jTable1.repaint();
+
+        if (!result.isEmpty()) {
+            //habiltarDatos();
+            for (Personal personal11 : result) {
+                nombre = personal11.getNombre();
+                apellido = personal11.getApellido();
+                telefono = personal11.getTelefono();
+                email = personal11.getCorreo();
+                direccion = personal11.getDireccion();
+                genero = personal11.getGenero();
+                codigopersoal = personal11.getCodigo_perso();
+                tipopersonal = personal11.getTipo_personal();
+                departamento = personal11.getDepartamento_p();
+
+                contacto = personal11.getCelular();
+
+                codigoevento = personal11.getCod_evento();
+
+                fechanacimiento = personal11.getFecchaNaci();
+
+            }
+
+            txtnombre.setText(nombre.trim());
+            txtapellido.setText(apellido.trim());
+            txttelefono.setText(telefono.trim());
+            txtemail.setText(email.trim());
+            txtdireccion.setText(direccion.trim());
+            txtcodigopersonal.setText(codigopersoal.trim());
+            txttipopersonal.setText(tipopersonal.trim());
+            jComboBoxdepartamento.setSelectedItem(departamento.trim());
+            txtcelular.setText(contacto.trim());
+            fechanac.setDate(fechanacimiento);
+            jComboBoxevento.setSelectedItem(codigoevento.trim());
+
+            //txtcodigoPropi.setText(cod.trim());
+        } else {
+
+            JOptionPane.showMessageDialog(null, "No se encontró ningúna Casa Vacional con la cedula ingresada");
+
+        }
+
+        base.close();
+        
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtemailActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String codigoEliminar = JOptionPane.showInputDialog("Ingrese el código de la casa a eliminar");
+        boolean encontrado = false;
+
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        Query query = base.query();
+        query.constrain(Personal.class);
+        query.descend("cedula").constrain(codigoEliminar);
+
+        ObjectSet<Personal> result = query.execute();
+        cargarTabla(base);
+
+        if (result.size() > 0) {
+            encontrado = true;
+
+            int resul = JOptionPane.showConfirmDialog(null, "Deseas eliminar los datos de la Casa Vacacional", "Confirmacion", JOptionPane.YES_NO_OPTION);
+
+            if (resul == JOptionPane.YES_OPTION) {
+                for (Personal vacacionalDB : result) {
+                    // Eliminar la Casa Vacacional de la base de datos db4o
+                    base.delete(vacacionalDB);
+                    JOptionPane.showMessageDialog(null, "Se están borrando los datos de la Casa Vacacional");
+                    cargarTabla(base);
+                }
+            } else if (resul == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Datos de la Casa Vacacional no eliminados");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "No se encontró el código");
+            cargarTabla(base);
+        }
+
+        base.close();
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        crearCasa(base);
+        base.close();
+        
+        
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
+
+        cargarTabla(base);
+
+        base.close();      
+
+        
+        
+        
+        
+    }//GEN-LAST:event_jButton4ActionPerformed
+ 
+    public void crearCasa(ObjectContainer Base) {
+        // Verificar si todos los campos están llenos
+        if (CedulaPersonal.getText().trim().isEmpty() || txtnombre.getText().trim().isEmpty()
+                || jComboBoxdepartamento.getSelectedItem() == null || txtapellido.getText().trim().isEmpty() || txttelefono.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos antes de ingresar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+            
+            if (rbmasculinoPro.isSelected()) {
+
+                sexo = "Masculino";
+
+            } else if (rbfemeninoPro.isSelected()) {
+                sexo = "Femenino";
+            }
+            // Obtener valores de los campos
+            
+
+            // Verificar si ya existe una casa con el mismo código
+            ObjectSet<Personal> resul = Base.queryByExample(new Personal(null, null, null, null, null, null, null, null, null,CedulaPersonal.getText().trim() , null, null, null, null, null, null, null,null));
+
+            if (!resul.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Ya existe una casa con el código ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            
+
+            // Crear objeto CasaVacacional y almacenar en la base de datos
+            Personal casa1 = new Personal(txtcodigopersonal.getText().trim(), txttipopersonal.getText().trim(), jComboBoxdepartamento.getSelectedItem().toString(), null, null, null,null,null , jComboBoxevento.getSelectedItem().toString(),CedulaPersonal.getText().trim(),txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtemail.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(),fechanac.getDate(),sexo);
+
+            Base.store(casa1);
+
+            JOptionPane.showMessageDialog(this, "Casa creada exitosamente");
+            limpiar();
+            cargarTabla(Base);
+        } finally {
+            Base.close();
+        }
+    }
+
+    public void limpiar() {
+        CedulaPersonal.setText("");
+        txtnombre.setText("");
+        txtapellido.setText("");
+        txttelefono.setText("");
+        txtemail.setText("");
+        txtdireccion.setText("");
+        txtcodigopersonal.setText("");
+        txttipopersonal.setText("");
+        txtcelular.setText("");
+        //  txtcodigoPropi.setText(" ");
+    }
+
+    public void cargarTabla(ObjectContainer base) {
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // Limpiar la tabla antes de cargar los datos
+
+        ObjectSet<Personal> result = base.queryByExample(new Personal());
+
+        while (result.hasNext()) {
+            Personal personal1 = result.next();
+
+            
+
+            Object[] row = {
+                personal1.getCedula(),
+                personal1.getNombre(),
+                personal1.getApellido(),
+                personal1.getTelefono(),
+                personal1.getCorreo(),
+                personal1.getDireccion(),
+                personal1.getGenero(),
+                personal1.getCodigo_perso(),
+                personal1.getTipo_personal(),
+                personal1.getDepartamento_p(),
+                personal1.getCelular(),
+                personal1.getFecchaNaci(),
+                personal1.getCod_evento()
+
+            };
+            model.addRow(row);
+        }
+
+    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CedulaPersonal;
+    private javax.swing.ButtonGroup botones;
+    private com.toedter.calendar.JDateChooser fechanac;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -376,9 +656,8 @@ public class Cruds_Personal extends javax.swing.JPanel {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private javax.swing.JComboBox<String> jComboBoxdepartamento;
+    private javax.swing.JComboBox<String> jComboBoxevento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -394,18 +673,17 @@ public class Cruds_Personal extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JRadioButton jRadioButton1;
-    private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JRadioButton rbfemeninoPro;
+    private javax.swing.JRadioButton rbmasculinoPro;
+    private javax.swing.JTextField txtapellido;
+    private javax.swing.JTextField txtcelular;
+    private javax.swing.JTextField txtcodigopersonal;
+    private javax.swing.JTextField txtdireccion;
+    private javax.swing.JTextField txtemail;
+    private javax.swing.JTextField txtnombre;
+    private javax.swing.JTextField txttelefono;
+    private javax.swing.JTextField txttipopersonal;
     // End of variables declaration//GEN-END:variables
 }
