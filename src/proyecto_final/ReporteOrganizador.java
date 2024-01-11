@@ -10,6 +10,7 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -199,6 +200,7 @@ public class ReporteOrganizador extends javax.swing.JPanel {
 
         // Limpia los datos de la tabla y actualiza los datos en la tabla con los nuevos registros del ArrayList
         jTableDatos.setModel(new DefaultTableModel());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", " Usuario", "Contraseña", "Presupuesto", "Fecha de Nacimiento"};
 
@@ -219,7 +221,7 @@ public class ReporteOrganizador extends javax.swing.JPanel {
             data[i][10] = listaagentes.get(i).getContraseña();
 
             data[i][11] = listaagentes.get(i).getPresupuesto();
-            data[i][12] = listaagentes.get(i).getFecchaNaci();
+            data[i][12] = listaagentes.get(i).getFecchaNaci()  != null ? sdf.format(listaagentes.get(i).getFecchaNaci()) : null ;
         }
 
         this.validate();

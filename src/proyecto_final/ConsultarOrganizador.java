@@ -10,8 +10,10 @@ import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import static proyecto_final.ReporteOrganizador.listaagentes;
 
 /**
  *
@@ -159,6 +161,7 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
     private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
         // TODO add your handling code here:
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Cambia el formato según tus necesidades
 
         String cedula = txtCedulaOrganizador.getText().trim();
 
@@ -194,7 +197,7 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
                     data[i][10] = organizador.getContraseña();
 
                     data[i][11] = organizador.getPresupuesto();
-                    data[i][12] = organizador.getFecchaNaci();
+                    data[i][12] = organizador.getFecchaNaci() != null ? sdf.format(organizador.getFecchaNaci()) : null;
 
                     i++;
                 }
@@ -229,6 +232,8 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
 
         ObjectSet<Organizador> result = base.queryByExample(Organizador.class);
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy"); // Cambia el formato según tus necesidades
+
         while (result.hasNext()) {
             Organizador organizador = result.next();
 
@@ -245,10 +250,12 @@ public class ConsultarOrganizador extends javax.swing.JPanel {
                 organizador.getUsuario(),
                 organizador.getContraseña(),
                 organizador.getPresupuesto(),
-                organizador.getFecchaNaci(),};
+                organizador.getFecchaNaci() != null ? sdf.format(organizador.getFecchaNaci()) : null
+            };
             model.addRow(row);
         }
     }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuscar;

@@ -26,7 +26,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
 
     public static ArrayList<Organizador> codigoseliminados = new ArrayList<>();
 
-    Boolean primeraMayusculaIngresada = false;
+    Boolean primeraMayusculaIngresada;
 
     public Crud_Organizador() {
         initComponents();

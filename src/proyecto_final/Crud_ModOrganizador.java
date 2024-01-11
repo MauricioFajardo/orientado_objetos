@@ -22,9 +22,9 @@ import javax.swing.JOptionPane;
  */
 public class Crud_ModOrganizador extends javax.swing.JPanel {
 
-    /**
-     * Creates new form Crud_Organizador
-     */
+    boolean primeraMayusculaIngresada;
+    String fecha;
+
     public Crud_ModOrganizador() {
         initComponents();
         deshabilitarCampos();
@@ -71,7 +71,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         txtcorreo = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtpresupuesto = new javax.swing.JTextField();
         btncrear = new javax.swing.JButton();
@@ -107,6 +106,9 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtcedulaKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcedulaKeyTyped(evt);
+            }
         });
         jPanel1.add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 157, 140, -1));
 
@@ -117,12 +119,18 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtnombreKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
         });
         jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 204, 140, -1));
 
         txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtapellidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoKeyTyped(evt);
             }
         });
         jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 252, 140, -1));
@@ -137,6 +145,9 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtcelularKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcelularKeyTyped(evt);
+            }
         });
         jPanel1.add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 140, -1));
 
@@ -149,6 +160,9 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
         txtdireccion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtdireccionKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdireccionKeyTyped(evt);
             }
         });
         jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 400, 140, -1));
@@ -173,21 +187,24 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txttelefonoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
         });
         jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 140, -1));
 
-        jLabel12.setText("CODIGO ORGANIZADOR");
-        jPanel1.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 30));
-
         jLabel15.setText("FECHA DE NACIMIENTO");
-        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, -1, 20));
+        jPanel1.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, -1, 20));
 
         txtpresupuesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtpresupuestoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpresupuestoKeyTyped(evt);
+            }
         });
-        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 160, -1));
+        jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 250, 160, -1));
 
         btncrear.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/disco-flexible.png"))); // NOI18N
         btncrear.setText("GUARDAR");
@@ -219,10 +236,10 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 jDateChooser1PropertyChange(evt);
             }
         });
-        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 340, 160, -1));
+        jPanel1.add(jDateChooser1, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 290, 160, -1));
 
         jLabel16.setText("PRESUPUESTO:");
-        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, -1, 20));
+        jPanel1.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, 20));
 
         lblcorreo.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(lblcorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 230, 140, -1));
@@ -355,22 +372,23 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
 
-        String nombre = " ", apellido = " ", celular = " ", telefono = " ", direccion = " ", correo = " ", codigo = " ";
+
+        String nombre = " ", apellido = " ", celular = " ", telefono = " ", direccion = " ", correo = " ", codigo = "";
         double presupuesto = 0.0;
-        Date fecha;
+        Date fecha = null;
 
         String genero = "";  // Asegúrate de tener declarada la variable "genero"
         String cod = "";     // Asegúrate de tener declarada la variable "cod"
 
         Query query = base.query();
-        query.constrain(Organizador.class);  // Cambiado a la clase correcta
+        query.constrain(Organizador.class);
         query.descend("cedula").constrain(txtcedula.getText().trim());
         ObjectSet<Organizador> result = query.execute();
 
         if (!result.isEmpty()) {
-            // habiltarDatos();
-            for (Organizador organizador : result) {  // Cambiado a la clase correcta
+            for (Organizador organizador : result) {
                 nombre = organizador.getNombre();
                 apellido = organizador.getApellido();
                 celular = organizador.getCelular();
@@ -381,8 +399,7 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
                 cod = organizador.getCod_organizador();
                 presupuesto = organizador.getPresupuesto();
                 genero = organizador.getGenero();
-                fecha = organizador.getFecchaNaci();  // Asegúrate de tener el método correcto
-
+                fecha = organizador.getFecchaNaci();
             }
 
             txtnombre.setText(nombre.trim());
@@ -397,40 +414,147 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
             } else if (genero.equalsIgnoreCase("Femenino")) {
                 rbnfemenino.setSelected(true);
             }
+
             String presupuesto1 = String.valueOf(presupuesto);
             txtpresupuesto.setText(presupuesto1);
 
-           
-
-            if (genero.equalsIgnoreCase("Masculino")) {
-                rbnmasculino.setSelected(true);
-            } else if (genero.equalsIgnoreCase("Femenino")) {
-                rbnfemenino.setSelected(true);
-
+            // Formatear la fecha usando SimpleDateFormat
+            String fechaFormateada = (fecha != null) ? sdf.format(fecha) : "";
+            try {
+                jDateChooser1.setDate(sdf.parse(fechaFormateada));
+            } catch (ParseException e) {
+                e.printStackTrace();
             }
 
             int resultado = JOptionPane.showConfirmDialog(null, "Desea modificar los datos", "confirmacion", JOptionPane.YES_NO_OPTION);
 
-            
             if (resultado == JOptionPane.YES_OPTION) {
                 habilitarCampos();
-            }else if (resultado == JOptionPane.NO_OPTION) {
-                JOptionPane.showMessageDialog(null, "Modificacion cancelada");
+            } else if (resultado == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Modificación cancelada");
                 deshabilitarCampos();
                 btncrear.setEnabled(false);
-
             }
 
-            
             // Resto del código...
         } else {
             JOptionPane.showMessageDialog(null, "No se encontró ningún organizador con la cédula ingresada");
         }
         base.close();
 
-        
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void txtcedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txtcedula.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_txtcedulaKeyTyped
+
+    private void txtcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelularKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txtcelular.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }      // TODO add your handling code here:
+    }//GEN-LAST:event_txtcelularKeyTyped
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txttelefono.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_txttelefonoKeyTyped
+
+    private void txtpresupuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpresupuestoKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txtpresupuesto.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_txtpresupuestoKeyTyped
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es una letra minúscula y si la longitud actual es menor que 50 y si no es un espacio en blanco
+        if ((!Character.isLetter(c) || !Character.isLowerCase(c) && primeraMayusculaIngresada) || txtnombre.getText().length() >= 20 || c == ' ') {
+            // Si no es una letra minúscula, o no es la primera letra mayúscula, o la longitud es mayor o igual a 50, o el caracter es un espacio en blanco, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        } else if (txtnombre.getText().length() == 0) {
+            // Si es el primer caracter del campo de texto, verificar que sea mayúscula
+            if (!Character.isUpperCase(c)) {
+                // Si no es mayúscula, convertirla a mayúscula
+                evt.setKeyChar(Character.toUpperCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        } else {
+            // Si no es el primer caracter del campo de texto, verificar que sea minúscula
+            String textoActual = txtnombre.getText();
+            char ultimoCaracter = textoActual.charAt(textoActual.length() - 1);
+            if (Character.isUpperCase(ultimoCaracter)) {
+                // Si es mayúscula, convertirla a minúscula
+                evt.setKeyChar(Character.toLowerCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        }           // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es una letra minúscula y si la longitud actual es menor que 50 y si no es un espacio en blanco
+        if ((!Character.isLetter(c) || !Character.isLowerCase(c) && primeraMayusculaIngresada) || txtapellido.getText().length() >= 20 || c == ' ') {
+            // Si no es una letra minúscula, o no es la primera letra mayúscula, o la longitud es mayor o igual a 50, o el caracter es un espacio en blanco, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        } else if (txtapellido.getText().length() == 0) {
+            // Si es el primer caracter del campo de texto, verificar que sea mayúscula
+            if (!Character.isUpperCase(c)) {
+                // Si no es mayúscula, convertirla a mayúscula
+                evt.setKeyChar(Character.toUpperCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        } else {
+            // Si no es el primer caracter del campo de texto, verificar que sea minúscula
+            String textoActual = txtapellido.getText();
+            char ultimoCaracter = textoActual.charAt(textoActual.length() - 1);
+            if (Character.isUpperCase(ultimoCaracter)) {
+                // Si es mayúscula, convertirla a minúscula
+                evt.setKeyChar(Character.toLowerCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        }      // TODO add your handling code here:
+    }//GEN-LAST:event_txtapellidoKeyTyped
+
+    private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es una letra minúscula y si la longitud actual es menor que 50 y si no es un espacio en blanco
+        if ((!Character.isLetter(c) || !Character.isLowerCase(c) && primeraMayusculaIngresada) || txtdireccion.getText().length() >= 50 || c == ' ') {
+            // Si no es una letra minúscula, o no es la primera letra mayúscula, o la longitud es mayor o igual a 50, o el caracter es un espacio en blanco, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        } else if (txtdireccion.getText().length() == 0) {
+            // Si es el primer caracter del campo de texto, verificar que sea mayúscula
+            if (!Character.isUpperCase(c)) {
+                // Si no es mayúscula, convertirla a mayúscula
+                evt.setKeyChar(Character.toUpperCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        } else {
+            // Si no es el primer caracter del campo de texto, verificar que sea minúscula
+            String textoActual = txtdireccion.getText();
+            char ultimoCaracter = textoActual.charAt(textoActual.length() - 1);
+            if (Character.isUpperCase(ultimoCaracter)) {
+                // Si es mayúscula, convertirla a minúscula
+                evt.setKeyChar(Character.toLowerCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        }              // TODO add your handling code here:
+    }//GEN-LAST:event_txtdireccionKeyTyped
 
     public static boolean esNumeroDecimal(String valor) {
         try {
@@ -617,7 +741,6 @@ public class Crud_ModOrganizador extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;

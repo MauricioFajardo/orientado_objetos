@@ -286,6 +286,8 @@ private void cargarTabla(ObjectContainer base) {
         DefaultTableModel model = (DefaultTableModel) jTableDatos.getModel();
         model.setRowCount(0); // Limpiar la tabla antes de cargar los datos
 
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
         ObjectSet<Organizador> result = base.queryByExample(Organizador.class);
 
         while (result.hasNext()) {
@@ -304,8 +306,10 @@ private void cargarTabla(ObjectContainer base) {
                 organizador.getUsuario(),
                 organizador.getContraseña(),
                 organizador.getPresupuesto(),
-                organizador.getFecchaNaci(),};
+                organizador.getFecchaNaci() != null ? sdf.format(organizador.getFecchaNaci()) : null
+            };
             model.addRow(row);
         }
     }
+
 }
