@@ -5,11 +5,15 @@
  */
 package proyecto_final;
 
+import Clases.Organizador;
 import Clases.Personal;
+import Clases.Validaciones;
 import com.db4o.Db4o;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.query.Query;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.ButtonGroup;
 import javax.swing.JOptionPane;
@@ -29,6 +33,10 @@ public class Cruds_Personal extends javax.swing.JPanel {
     public Cruds_Personal() {
         initComponents();
     }
+    
+    public static ArrayList<Personal> listaagentes = new ArrayList<>();
+
+    public static ArrayList<Personal> codigoseliminados = new ArrayList<>();
 
     public void Agrupar() {
         ButtonGroup botones = new ButtonGroup();
@@ -70,7 +78,6 @@ public class Cruds_Personal extends javax.swing.JPanel {
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        txtcodigopersonal = new javax.swing.JTextField();
         txtcelular = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -85,6 +92,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
         txttipopersonal = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
+        txtcodigopersonal = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -269,30 +277,30 @@ public class Cruds_Personal extends javax.swing.JPanel {
                                                     .addComponent(jLabel15)
                                                     .addComponent(jLabel4))
                                                 .addGap(18, 18, 18)
-                                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                    .addComponent(fechanac, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                    .addComponent(txtcelular)
-                                                    .addComponent(jComboBoxevento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jComboBoxdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(txttipopersonal))
-                                                .addGap(43, 43, 43)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jButton7)
-                                                    .addComponent(jButton6))))))))
+                                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                            .addComponent(fechanac, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                                            .addComponent(txtcelular)
+                                                            .addComponent(jComboBoxevento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(jComboBoxdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(txttipopersonal))
+                                                        .addGap(43, 43, 43)
+                                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                            .addComponent(jButton7)
+                                                            .addComponent(jButton6)))
+                                                    .addComponent(txtcodigopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                         .addGap(0, 73, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(179, 179, 179)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtcodigopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
-                        .addComponent(jButton2)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton3)
-                        .addGap(33, 33, 33)
-                        .addComponent(jButton4)))
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(34, 34, 34)
+                .addComponent(jButton2)
+                .addGap(30, 30, 30)
+                .addComponent(jButton3)
+                .addGap(33, 33, 33)
+                .addComponent(jButton4)
                 .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -305,8 +313,8 @@ public class Cruds_Personal extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(CedulaPersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel12)
-                    .addComponent(txtcodigopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5))
+                    .addComponent(jButton5)
+                    .addComponent(txtcodigopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
@@ -389,7 +397,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
-        // ActualizarDatos(base);
+        ActualizarDatos(base);
         base.close();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -478,7 +486,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
             //txtcodigoPropi.setText(cod.trim());
         } else {
 
-            JOptionPane.showMessageDialog(null, "No se encontró ningúna Casa Vacional con la cedula ingresada");
+            JOptionPane.showMessageDialog(null, "No se encontró ningúna Personal con la cedula ingresada");
 
         }
 
@@ -487,16 +495,79 @@ public class Cruds_Personal extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    public void ActualizarDatos(ObjectContainer base) {
-        // Verificar si todos los campos están llenos
-        if (CedulaPersonal.getText().trim().isEmpty() || txtnombre.getText().trim().isEmpty()
-                || jComboBoxdepartamento.getSelectedItem() == null || txtapellido.getText().trim().isEmpty() || txttelefono.getText().trim().isEmpty()) {
+     public boolean validarCampos() {
+        Validaciones miValidaciones = new Validaciones();
+        boolean ban_confirmar = true;
 
-            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos antes de ingresar", "ERROR", JOptionPane.ERROR_MESSAGE);
-            return;
+        if (CedulaPersonal.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese la cédula ");
+            ban_confirmar = false;
+        } else if (!miValidaciones.validarCedula(CedulaPersonal.getText())) {
+            JOptionPane.showMessageDialog(this, "Cédula incorrecta. Ingrese de nuevo");
+            ban_confirmar = false;
         }
 
+        if (txtnombre.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el nombre ");
+            ban_confirmar = false;
+        } else if (!miValidaciones.ValidarNomApe(txtnombre.getText())) {
+            JOptionPane.showMessageDialog(this, "Nombre incorrecto. Ingrese de nuevo");
+            ban_confirmar = false;
+        }
+
+        if (txtapellido.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el apellido ");
+                ban_confirmar = false;
+        } else if (!miValidaciones.ValidarNomApe(txtapellido.getText())) {
+            JOptionPane.showMessageDialog(this, "Apellido incorrecto. Ingrese de nuevo");
+            ban_confirmar = false;
+        }
+
+        if (txtemail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el correo ");
+            ban_confirmar = false;
+        } else if (!miValidaciones.ValidarCorreo(txtemail.getText())) {
+            JOptionPane.showMessageDialog(this, "Correo incorrecto. Ingrese de nuevo");
+            ban_confirmar = false;
+        }
+
+        // Validar otros campos aquí...
+        if (txttelefono.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ingrese el celular ");
+            ban_confirmar = false;
+        } else if (!miValidaciones.validarCedula(txttelefono.getText())) {
+            JOptionPane.showMessageDialog(this, "Celular incorrecto. Ingrese de nuevo");
+            ban_confirmar = false;
+        }
+        if (fechanac.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Ingrese una Fecha");
+            ban_confirmar = false;
+        } else {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaComoCadena = sdf.format(fechanac.getDate());
+
+            if (!miValidaciones.validarFecha(fechaComoCadena)) {
+                JOptionPane.showMessageDialog(this, "Fecha incorrecta. Ingrese de nuevo");
+                ban_confirmar = false;
+            }
+        }
+
+       return ban_confirmar;
+    }
+
+    
+    
+    public void ActualizarDatos(ObjectContainer base) {
+        // Verificar si todos los campos están llenos
+        
+
         try {
+            
+            if (!validarCampos()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
+
+                return;
+            }
 
             if (rbmasculinoPro.isSelected()) {
 
@@ -598,46 +669,75 @@ public class Cruds_Personal extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jButton4ActionPerformed
 
-    public void crearCasa(ObjectContainer Base) {
-        // Verificar si todos los campos están llenos
-        if (CedulaPersonal.getText().trim().isEmpty() || txtnombre.getText().trim().isEmpty()
-                || jComboBoxdepartamento.getSelectedItem() == null || txtapellido.getText().trim().isEmpty() || txttelefono.getText().trim().isEmpty()) {
+    public void crearCasa(ObjectContainer base) {
+    // Verificar si todos los campos están llenos
+    
+    try {
+        
+        if (!validarCampos()) {
+                JOptionPane.showMessageDialog(this, "Por favor, complete todos los campos.", "Error", JOptionPane.ERROR_MESSAGE);
 
-            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos antes de ingresar", "ERROR", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        
+        // Obtener el último código de personal en la base de datos
+        Query query = base.query();
+        query.constrain(Personal.class);
+        query.descend("codigo_perso").orderDescending();
+        ObjectSet<Personal> result = query.execute();
+
+        int ultimoCodigo = 1; // Por defecto, si no hay registros previos
+        if (!result.isEmpty()) {
+            Personal ultimoPersonal = result.next();
+            ultimoCodigo = Integer.parseInt(ultimoPersonal.getCodigo_perso()) + 1;
+        }
+
+        // Formatear el código con ceros a la izquierda
+        String nuevoCodigo = String.format("%03d", ultimoCodigo);
+        txtcodigopersonal.setText(nuevoCodigo);
+
+        // Verificar si ya existe un personal con el mismo código
+        result = base.queryByExample(new Personal(nuevoCodigo, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null));
+
+        if (!result.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Ya existe un personal con el código ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
 
-        try {
+        // Obtener valores de los campos
+        String sexo = (rbmasculinoPro.isSelected()) ? "Masculino" : "Femenino";
 
-            if (rbmasculinoPro.isSelected()) {
+        // Crear objeto Personal y almacenar en la base de datos
+        Personal nuevoPersonal = new Personal(
+                nuevoCodigo,
+                txttipopersonal.getText().trim(),
+                jComboBoxdepartamento.getSelectedItem().toString(),
+                null,
+                null,
+                null,
+                null,
+                null,
+                jComboBoxevento.getSelectedItem().toString(),
+                CedulaPersonal.getText().trim(),
+                txtnombre.getText().trim(),
+                txtapellido.getText().trim(),
+                txttelefono.getText().trim(),
+                txtemail.getText().trim(),
+                txtdireccion.getText().trim(),
+                txtcelular.getText().trim(),
+                fechanac.getDate(),
+                sexo
+        );
 
-                sexo = "Masculino";
+        base.store(nuevoPersonal);
 
-            } else if (rbfemeninoPro.isSelected()) {
-                sexo = "Femenino";
-            }
-            // Obtener valores de los campos
-
-            // Verificar si ya existe una casa con el mismo código
-            ObjectSet<Personal> resul = Base.queryByExample(new Personal(null, null, null, null, null, null, null, null, null, CedulaPersonal.getText().trim(), null, null, null, null, null, null, null, null));
-
-            if (!resul.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Ya existe una casa con el código ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
-            // Crear objeto CasaVacacional y almacenar en la base de datos
-            Personal casa1 = new Personal(txtcodigopersonal.getText().trim(), txttipopersonal.getText().trim(), jComboBoxdepartamento.getSelectedItem().toString(), null, null, null, null, null, jComboBoxevento.getSelectedItem().toString(), CedulaPersonal.getText().trim(), txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtemail.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(), fechanac.getDate(), sexo);
-
-            Base.store(casa1);
-
-            JOptionPane.showMessageDialog(this, "Casa creada exitosamente");
-            limpiar();
-            cargarTabla(Base);
-        } finally {
-            Base.close();
-        }
+        JOptionPane.showMessageDialog(this, "Personal creado exitosamente");
+        limpiar();
+        cargarTabla(base);
+    } finally {
+        base.close();
     }
+}
 
     public void limpiar() {
         CedulaPersonal.setText("");
@@ -718,7 +818,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
     private javax.swing.JRadioButton rbmasculinoPro;
     private javax.swing.JTextField txtapellido;
     private javax.swing.JTextField txtcelular;
-    private javax.swing.JTextField txtcodigopersonal;
+    private javax.swing.JLabel txtcodigopersonal;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtemail;
     private javax.swing.JTextField txtnombre;
