@@ -26,6 +26,8 @@ public class Crud_Organizador extends javax.swing.JPanel {
 
     public static ArrayList<Organizador> codigoseliminados = new ArrayList<>();
 
+    Boolean primeraMayusculaIngresada = false;
+
     public Crud_Organizador() {
         initComponents();
         btncrear.setEnabled(false);
@@ -64,7 +66,6 @@ public class Crud_Organizador extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         txtdireccion = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         txttelefono = new javax.swing.JTextField();
         txtpresupuesto = new javax.swing.JTextField();
@@ -90,6 +91,7 @@ public class Crud_Organizador extends javax.swing.JPanel {
         lbldireccion = new javax.swing.JLabel();
         lblcedula = new javax.swing.JLabel();
         lblcod = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 153, 153));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -109,12 +111,18 @@ public class Crud_Organizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtnombreKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtnombreKeyTyped(evt);
+            }
         });
         jPanel1.add(txtnombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 204, 160, -1));
 
         txtapellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtapellidoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtapellidoKeyTyped(evt);
             }
         });
         jPanel1.add(txtapellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 252, 160, -1));
@@ -129,6 +137,9 @@ public class Crud_Organizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtcelularKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcelularKeyTyped(evt);
+            }
         });
         jPanel1.add(txtcelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 301, 160, -1));
 
@@ -142,11 +153,11 @@ public class Crud_Organizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtdireccionKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtdireccionKeyTyped(evt);
+            }
         });
         jPanel1.add(txtdireccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(197, 400, 160, -1));
-
-        jLabel9.setText("GENERO:");
-        jPanel1.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 470, -1, -1));
 
         jLabel11.setText("TELEFONO");
         jPanel1.add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 360, -1, -1));
@@ -155,12 +166,18 @@ public class Crud_Organizador extends javax.swing.JPanel {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txttelefonoKeyReleased(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txttelefonoKeyTyped(evt);
+            }
         });
         jPanel1.add(txttelefono, new org.netbeans.lib.awtextra.AbsoluteConstraints(194, 353, 160, -1));
 
         txtpresupuesto.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtpresupuestoKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtpresupuestoKeyTyped(evt);
             }
         });
         jPanel1.add(txtpresupuesto, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 300, 180, -1));
@@ -205,6 +222,9 @@ public class Crud_Organizador extends javax.swing.JPanel {
         txtcedula.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtcedulaKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtcedulaKeyTyped(evt);
             }
         });
         jPanel2.add(txtcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 160, -1));
@@ -256,6 +276,9 @@ public class Crud_Organizador extends javax.swing.JPanel {
         lblcedula.setForeground(new java.awt.Color(255, 0, 0));
         jPanel2.add(lblcedula, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 160, 150, 20));
         jPanel2.add(lblcod, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 140, 140, 30));
+
+        jLabel9.setText("GENERO:");
+        jPanel2.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 430, 60, 40));
 
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 880, 540));
 
@@ -340,6 +363,117 @@ public class Crud_Organizador extends javax.swing.JPanel {
         Validar();
 
     }//GEN-LAST:event_jDateChooser1PropertyChange
+
+    private void txtcedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcedulaKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txtcedula.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }               // TODO add your handling code here:
+    }//GEN-LAST:event_txtcedulaKeyTyped
+
+    private void txtnombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtnombreKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es una letra minúscula y si la longitud actual es menor que 50 y si no es un espacio en blanco
+        if ((!Character.isLetter(c) || !Character.isLowerCase(c) && primeraMayusculaIngresada) || txtnombre.getText().length() >= 20 || c == ' ') {
+            // Si no es una letra minúscula, o no es la primera letra mayúscula, o la longitud es mayor o igual a 50, o el caracter es un espacio en blanco, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        } else if (txtnombre.getText().length() == 0) {
+            // Si es el primer caracter del campo de texto, verificar que sea mayúscula
+            if (!Character.isUpperCase(c)) {
+                // Si no es mayúscula, convertirla a mayúscula
+                evt.setKeyChar(Character.toUpperCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        } else {
+            // Si no es el primer caracter del campo de texto, verificar que sea minúscula
+            String textoActual = txtnombre.getText();
+            char ultimoCaracter = textoActual.charAt(textoActual.length() - 1);
+            if (Character.isUpperCase(ultimoCaracter)) {
+                // Si es mayúscula, convertirla a minúscula
+                evt.setKeyChar(Character.toLowerCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        }              // TODO add your handling code here:
+    }//GEN-LAST:event_txtnombreKeyTyped
+
+    private void txtapellidoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtapellidoKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es una letra minúscula y si la longitud actual es menor que 50 y si no es un espacio en blanco
+        if ((!Character.isLetter(c) || !Character.isLowerCase(c) && primeraMayusculaIngresada) || txtapellido.getText().length() >= 20 || c == ' ') {
+            // Si no es una letra minúscula, o no es la primera letra mayúscula, o la longitud es mayor o igual a 50, o el caracter es un espacio en blanco, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        } else if (txtapellido.getText().length() == 0) {
+            // Si es el primer caracter del campo de texto, verificar que sea mayúscula
+            if (!Character.isUpperCase(c)) {
+                // Si no es mayúscula, convertirla a mayúscula
+                evt.setKeyChar(Character.toUpperCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        } else {
+            // Si no es el primer caracter del campo de texto, verificar que sea minúscula
+            String textoActual = txtapellido.getText();
+            char ultimoCaracter = textoActual.charAt(textoActual.length() - 1);
+            if (Character.isUpperCase(ultimoCaracter)) {
+                // Si es mayúscula, convertirla a minúscula
+                evt.setKeyChar(Character.toLowerCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        }              // TODO add your handling code here:
+    }//GEN-LAST:event_txtapellidoKeyTyped
+
+    private void txtcelularKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtcelularKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txtcelular.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_txtcelularKeyTyped
+
+    private void txttelefonoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txttelefonoKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txttelefono.getText().length() >= 7) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }            // TODO add your handling code here:
+    }//GEN-LAST:event_txttelefonoKeyTyped
+
+    private void txtdireccionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdireccionKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es una letra minúscula y si la longitud actual es menor que 50 y si no es un espacio en blanco
+        if ((!Character.isLetter(c) || !Character.isLowerCase(c) && primeraMayusculaIngresada) || txtdireccion.getText().length() >= 50 || c == ' ') {
+            // Si no es una letra minúscula, o no es la primera letra mayúscula, o la longitud es mayor o igual a 50, o el caracter es un espacio en blanco, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        } else if (txtdireccion.getText().length() == 0) {
+            // Si es el primer caracter del campo de texto, verificar que sea mayúscula
+            if (!Character.isUpperCase(c)) {
+                // Si no es mayúscula, convertirla a mayúscula
+                evt.setKeyChar(Character.toUpperCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        } else {
+            // Si no es el primer caracter del campo de texto, verificar que sea minúscula
+            String textoActual = txtdireccion.getText();
+            char ultimoCaracter = textoActual.charAt(textoActual.length() - 1);
+            if (Character.isUpperCase(ultimoCaracter)) {
+                // Si es mayúscula, convertirla a minúscula
+                evt.setKeyChar(Character.toLowerCase(c));
+                primeraMayusculaIngresada = true;
+            }
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_txtdireccionKeyTyped
+
+    private void txtpresupuestoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpresupuestoKeyTyped
+        char c = evt.getKeyChar();
+        // Verificar si es un número y si la longitud actual es menor que 10
+        if (!Character.isDigit(c) || txtpresupuesto.getText().length() >= 10) {
+            // Si no es un número o la longitud es mayor o igual a 10, se consume el evento para evitar que se agregue al campo de texto
+            evt.consume();
+        }          // TODO add your handling code here:
+    }//GEN-LAST:event_txtpresupuestoKeyTyped
 
     public static boolean esNumeroDecimal(String valor) {
         try {

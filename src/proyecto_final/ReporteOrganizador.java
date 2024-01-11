@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author eliza
  */
 public class ReporteOrganizador extends javax.swing.JPanel {
-    
+
     public static ArrayList<Organizador> listaagentes = new ArrayList<>();
 
     public static ArrayList<Organizador> codigoseliminados = new ArrayList<>();
@@ -28,7 +28,7 @@ public class ReporteOrganizador extends javax.swing.JPanel {
      */
     public ReporteOrganizador() {
         initComponents();
-         actualizarDatos();
+        actualizarDatos();
     }
 
     /**
@@ -161,10 +161,9 @@ public class ReporteOrganizador extends javax.swing.JPanel {
 
     private void btnActualizatDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnActualizatDatosActionPerformed
         // TODO add your handling code here:
-        
-        
+
         actualizarDatos();
-       /* ObjectContainer base = Db4o.openFile(Inicio.direccion);
+        /* ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
         ObjectSet<Organizador> result = base.queryByExample(new Organizador());
         String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", "Presupuesto", "Fecha de Nacimiento"};
@@ -193,7 +192,6 @@ public class ReporteOrganizador extends javax.swing.JPanel {
         base.close();*/
     }//GEN-LAST:event_btnActualizatDatosActionPerformed
 
-    
     public void actualizarDatos() {
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
@@ -202,9 +200,9 @@ public class ReporteOrganizador extends javax.swing.JPanel {
         // Limpia los datos de la tabla y actualiza los datos en la tabla con los nuevos registros del ArrayList
         jTableDatos.setModel(new DefaultTableModel());
 
-        String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", "Presupuesto", "Fecha de Nacimiento"};
+        String[] columnNames = {"Código", "Cédula", "Nombre", "Apellido", "Celular", "Telefono", "Dirección", "Género", "Correo", " Usuario", "Contraseña", "Presupuesto", "Fecha de Nacimiento"};
 
-        Object[][] data = new Object[listaagentes.size()][11];
+        Object[][] data = new Object[listaagentes.size()][13];
 
         for (int i = 0; i < listaagentes.size(); i++) {
             data[i][0] = listaagentes.get(i).getCod_organizador();
@@ -216,8 +214,12 @@ public class ReporteOrganizador extends javax.swing.JPanel {
             data[i][6] = listaagentes.get(i).getDireccion();
             data[i][7] = listaagentes.get(i).getGenero();
             data[i][8] = listaagentes.get(i).getCorreo();
-            data[i][9] = listaagentes.get(i).getPresupuesto();
-            data[i][10] = listaagentes.get(i).getFecchaNaci();
+            data[i][9] = listaagentes.get(i).getUsuario();
+
+            data[i][10] = listaagentes.get(i).getContraseña();
+
+            data[i][11] = listaagentes.get(i).getPresupuesto();
+            data[i][12] = listaagentes.get(i).getFecchaNaci();
         }
 
         this.validate();
