@@ -227,6 +227,7 @@ public class Asignar_Credencialess extends javax.swing.JPanel {
         });
         add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 340, -1, 30));
 
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/dispositivo.png"))); // NOI18N
         jButton2.setText("CARGAR TABLA");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

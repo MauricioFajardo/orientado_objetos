@@ -14,7 +14,7 @@ public class Inicio extends javax.swing.JFrame {
     /**
      * Creates new form Inicio
      */
-  // public static String direccion = "C:\\Users\\Lenovo.User\\Documents\\base_orientada\\proyecto_final.yap";
+    // public static String direccion = "C:\\Users\\Lenovo.User\\Documents\\base_orientada\\proyecto_final.yap";
     public static String direccion = "C:\\Users\\HP\\Documents\\GitHub\\orientado_objetos\\pro.yap";
     //public static String direccion = "C:\\Users\\eliza\\OneDrive\\Documentos\\GitHub\\Proyceto_Final.yap";
     //public static String direccion = "C:\\Users\\Lenovo\\Desktop\\PriyectoFinal\\Proyceto_Final.yap";
@@ -102,10 +102,20 @@ public class Inicio extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/disco-flexible.png"))); // NOI18N
         jButton1.setText("INICIAR SESION");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 240, -1, 40));
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/editar (1).png"))); // NOI18N
         jButton2.setText("CREAR CUENTA");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, -1, 40));
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
@@ -269,6 +279,16 @@ public class Inicio extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Publico le = new Publico();
+        le.setVisible(true);
+        this.dispose();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
