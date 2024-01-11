@@ -21,8 +21,8 @@ public class Login_Organizador extends javax.swing.JFrame {
     String usuario = " ", password = " ";
 
     public Login_Organizador() {
-        
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -72,6 +72,11 @@ public class Login_Organizador extends javax.swing.JFrame {
         txtusuario.setBackground(new java.awt.Color(0, 153, 153));
         txtusuario.setText("Ingrese el Usuario");
         txtusuario.setBorder(null);
+        txtusuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtusuarioMouseClicked(evt);
+            }
+        });
         txtusuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtusuarioActionPerformed(evt);
@@ -82,6 +87,11 @@ public class Login_Organizador extends javax.swing.JFrame {
         txtcantra.setBackground(new java.awt.Color(0, 153, 153));
         txtcantra.setText("jPasswordField1");
         txtcantra.setBorder(null);
+        txtcantra.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtcantraMouseClicked(evt);
+            }
+        });
         jPanel2.add(txtcantra, new org.netbeans.lib.awtextra.AbsoluteConstraints(153, 281, 200, 40));
 
         jSeparator1.setBackground(new java.awt.Color(204, 204, 204));
@@ -181,6 +191,14 @@ public class Login_Organizador extends javax.swing.JFrame {
         base.close();
         // TODO add your handling code here:
     }//GEN-LAST:event_btnIniciarSecioActionPerformed
+
+    private void txtusuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtusuarioMouseClicked
+        txtusuario.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_txtusuarioMouseClicked
+
+    private void txtcantraMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtcantraMouseClicked
+        txtcantra.setText("");        // TODO add your handling code here:
+    }//GEN-LAST:event_txtcantraMouseClicked
 
     /**
      * @param args the command line arguments
