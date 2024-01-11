@@ -20,8 +20,8 @@ import javax.swing.table.DefaultTableModel;
  * @author eliza
  */
 public class Cruds_Personal extends javax.swing.JPanel {
-    
-     String sexo;
+
+    String sexo;
 
     /**
      * Creates new form Cruds_Personal
@@ -29,7 +29,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
     public Cruds_Personal() {
         initComponents();
     }
-    
+
     public void Agrupar() {
         ButtonGroup botones = new ButtonGroup();
         botones.add(rbfemeninoPro);
@@ -271,7 +271,6 @@ public class Cruds_Personal extends javax.swing.JPanel {
                                                 .addGap(18, 18, 18)
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                                     .addComponent(fechanac, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                                    .addComponent(txtcodigopersonal)
                                                     .addComponent(txtcelular)
                                                     .addComponent(jComboBoxevento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jComboBoxdepartamento, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -284,13 +283,16 @@ public class Cruds_Personal extends javax.swing.JPanel {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(179, 179, 179)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton2)
-                .addGap(30, 30, 30)
-                .addComponent(jButton3)
-                .addGap(33, 33, 33)
-                .addComponent(jButton4)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(txtcodigopersonal, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(34, 34, 34)
+                        .addComponent(jButton2)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton3)
+                        .addGap(33, 33, 33)
+                        .addComponent(jButton4)))
                 .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -387,7 +389,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
-       // ActualizarDatos(base);
+        // ActualizarDatos(base);
         base.close();
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -400,7 +402,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-         ObjectContainer base = Db4o.openFile(Inicio.direccion);
+        ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
         String nombre = " ", apellido = " ", telefono = " ", email = " ", direccion = " ", genero = " ", codigopersoal = " ";
         String tipopersonal = " ", departamento = " ", contacto = " ", codigoevento = " ";
@@ -481,13 +483,59 @@ public class Cruds_Personal extends javax.swing.JPanel {
         }
 
         base.close();
-        
-        
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    public void ActualizarDatos(ObjectContainer base) {
+        // Verificar si todos los campos están llenos
+        if (CedulaPersonal.getText().trim().isEmpty() || txtnombre.getText().trim().isEmpty()
+                || jComboBoxdepartamento.getSelectedItem() == null || txtapellido.getText().trim().isEmpty() || txttelefono.getText().trim().isEmpty()) {
+
+            JOptionPane.showMessageDialog(null, "Por favor llene todos los campos antes de ingresar", "ERROR", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        try {
+
+            if (rbmasculinoPro.isSelected()) {
+
+                sexo = "Masculino";
+
+            } else if (rbfemeninoPro.isSelected()) {
+                sexo = "Femenino";
+            }
+            // Obtener valores de los campos
+
+            Personal micasa = new Personal(null, null, null, null, null, null, null, null, null, CedulaPersonal.getText().trim(), null, null, null, null, null, null, null, null);
+
+            ObjectSet res = base.get(micasa);
+            Personal micasita = (Personal) res.next();
+            micasita.setNombre(txtnombre.getText().trim());
+
+            micasita.setApellido(txtapellido.getText().trim());
+            micasita.setApellido(txttelefono.getText().trim());
+            micasita.setCorreo(txtemail.getText().trim());
+            micasita.setTelefono(txttelefono.getText().trim());
+
+            micasita.setDireccion(txtdireccion.getText().trim());
+            micasita.setCodigo_perso(txtcodigopersonal.getText().trim());
+            micasita.setTipo_personal(txttipopersonal.getText().trim());
+            micasita.setDepartamento_p(jComboBoxdepartamento.getSelectedItem().toString());
+            micasita.setCelular(txtcelular.getText().trim());
+            micasita.setFecchaNaci(fechanac.getDate());
+            micasita.setCod_evento(jComboBoxevento.getSelectedItem().toString());
+
+            base.set(micasita);
+
+            JOptionPane.showMessageDialog(this, "Modificación exitosa");
+            limpiar();
+
+        } finally {
+            base.close();
+        }
+    }
+
 
     private void txtemailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtemailActionPerformed
         // TODO add your handling code here:
@@ -535,25 +583,21 @@ public class Cruds_Personal extends javax.swing.JPanel {
 
         crearCasa(base);
         base.close();
-        
-        
-        
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-       
+
         ObjectContainer base = Db4o.openFile(Inicio.direccion);
 
         cargarTabla(base);
 
-        base.close();      
+        base.close();
 
-        
-        
-        
-        
+
     }//GEN-LAST:event_jButton4ActionPerformed
- 
+
     public void crearCasa(ObjectContainer Base) {
         // Verificar si todos los campos están llenos
         if (CedulaPersonal.getText().trim().isEmpty() || txtnombre.getText().trim().isEmpty()
@@ -564,7 +608,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
         }
 
         try {
-            
+
             if (rbmasculinoPro.isSelected()) {
 
                 sexo = "Masculino";
@@ -573,20 +617,17 @@ public class Cruds_Personal extends javax.swing.JPanel {
                 sexo = "Femenino";
             }
             // Obtener valores de los campos
-            
 
             // Verificar si ya existe una casa con el mismo código
-            ObjectSet<Personal> resul = Base.queryByExample(new Personal(null, null, null, null, null, null, null, null, null,CedulaPersonal.getText().trim() , null, null, null, null, null, null, null,null));
+            ObjectSet<Personal> resul = Base.queryByExample(new Personal(null, null, null, null, null, null, null, null, null, CedulaPersonal.getText().trim(), null, null, null, null, null, null, null, null));
 
             if (!resul.isEmpty()) {
                 JOptionPane.showMessageDialog(this, "Ya existe una casa con el código ingresado.", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            
-
             // Crear objeto CasaVacacional y almacenar en la base de datos
-            Personal casa1 = new Personal(txtcodigopersonal.getText().trim(), txttipopersonal.getText().trim(), jComboBoxdepartamento.getSelectedItem().toString(), null, null, null,null,null , jComboBoxevento.getSelectedItem().toString(),CedulaPersonal.getText().trim(),txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtemail.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(),fechanac.getDate(),sexo);
+            Personal casa1 = new Personal(txtcodigopersonal.getText().trim(), txttipopersonal.getText().trim(), jComboBoxdepartamento.getSelectedItem().toString(), null, null, null, null, null, jComboBoxevento.getSelectedItem().toString(), CedulaPersonal.getText().trim(), txtnombre.getText().trim(), txtapellido.getText().trim(), txttelefono.getText().trim(), txtemail.getText().trim(), txtdireccion.getText().trim(), txtcelular.getText().trim(), fechanac.getDate(), sexo);
 
             Base.store(casa1);
 
@@ -621,8 +662,6 @@ public class Cruds_Personal extends javax.swing.JPanel {
         while (result.hasNext()) {
             Personal personal1 = result.next();
 
-            
-
             Object[] row = {
                 personal1.getCedula(),
                 personal1.getNombre(),
@@ -643,7 +682,7 @@ public class Cruds_Personal extends javax.swing.JPanel {
         }
 
     }
-    
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CedulaPersonal;
